@@ -1,2 +1,12 @@
 # LDDM_Projeto
-Projeto da matéria de Desenvolvimento de Dispositivos Moveis  
+
+Descrição  
+
+
+### Rodar o Projeto
+
+Antes de rodar o projeto use
+```bash
+    flutter pub get
+```
+
