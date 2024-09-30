@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:projeto/assets/Colors.dart';
 
 class UserIcon extends StatelessWidget implements PreferredSizeWidget {
-  const UserIcon({super.key});
+   final bool showCross;
+
+  const UserIcon({
+    super.key,
+    required this.showCross,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +39,7 @@ class UserIcon extends StatelessWidget implements PreferredSizeWidget {
           ],
         ),
       ),
-      automaticallyImplyLeading: false,
+      automaticallyImplyLeading: showCross,
     );
   }
 
