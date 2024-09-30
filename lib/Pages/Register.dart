@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto/assets/Colors.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -8,8 +9,173 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+        appBar: AppBar(),
+        body: Padding(
+          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(""),
+              const SizedBox(height: 100),
+              Column(
+                children: [
+                  const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Nome",
+                      style: TextStyle(
+                        fontSize: 25,
+                        color: textColor,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  TextField(
+                    controller: _nameController,
+                    keyboardType: TextInputType.name,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      filled: true,
+                      fillColor: primaryColor,
+                    ),
+                    style: const TextStyle(
+                      color: secondaryColor,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              Column(
+                children: [
+                  const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Email",
+                      style: TextStyle(
+                        fontSize: 25,
+                        color: textColor,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  TextField(
+                    controller: _emailController,
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      filled: true,
+                      fillColor: primaryColor,
+                    ),
+                    style: const TextStyle(
+                      color: secondaryColor,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              Column(
+                children: [
+                  const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Senha",
+                      style: TextStyle(
+                        fontSize: 25,
+                        color: textColor,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  TextField(
+                    controller: _passwordController,
+                    keyboardType: TextInputType.visiblePassword,
+                    obscureText: true,
+                    maxLength: 6,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      filled: true,
+                      fillColor: primaryColor,
+                    ),
+                    style: const TextStyle(
+                      color: secondaryColor,
+                    ),
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Confirmar Senha",
+                      style: TextStyle(
+                        fontSize: 25,
+                        color: textColor,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  TextField(
+                    controller: _confirmPasswordController,
+                    keyboardType: TextInputType.visiblePassword,
+                    obscureText: true,
+                    maxLength: 6,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      filled: true,
+                      fillColor: primaryColor,
+                    ),
+                    style: const TextStyle(
+                      color: secondaryColor,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 40),
+              FilledButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/home');
+                },
+                style: FilledButton.styleFrom(
+                    backgroundColor: accentColor,
+                    minimumSize: const Size(200, 60),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    )),
+                child: const Text(
+                  "Criar conta",
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: textColor,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 40),
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text(
+                  "Já tem uma conta? Faça Login",
+                  style: TextStyle(
+                    color: textColor,
+                    fontSize: 16,
+                    decoration: TextDecoration.underline,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ));
   }
 }

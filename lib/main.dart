@@ -5,6 +5,7 @@ import 'package:projeto/Pages/EventData.dart';
 import 'package:projeto/Pages/Home.dart';
 import 'package:projeto/Pages/Login.dart';
 import 'package:projeto/Pages/Register.dart';
+import 'package:projeto/Pages/User.dart';
 import 'package:projeto/Pages/YourEvents.dart';
 
 void main (){
@@ -16,6 +17,7 @@ void main (){
       '/': (context) => const Login(),
       '/register': (context) => const Register(),
       '/home': (context) => const Home(),
+      '/user/:data': (context) => const User(),
       '/:user/events_calendar/:data': (context) => const EventCalendar(),
       '/event_data/:data': (context) => const EventData(),
       '/:user/create_event': (context) => const CreateEvent(),
