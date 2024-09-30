@@ -21,7 +21,7 @@ class _NavBottomBarState extends State<NavBottomBar> {
             children: [
               GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, "/:user/events_calendar/:data");
+                  Navigator.pushNamed(context, "/:user/events_calendar/:dat");
                 },
                 child: Container(
                   width: 60,
