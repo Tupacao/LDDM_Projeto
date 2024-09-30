@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:projeto/Components/NavBottombar.dart';
+import 'package:projeto/assets/Colors.dart';
 
 class User extends StatefulWidget {
   const User({super.key});
@@ -10,6 +12,235 @@ class User extends StatefulWidget {
 class _UserState extends State<User> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Row(
+              children: [
+                Container(
+                  width: 120,
+                  height: 120,
+                  decoration: const BoxDecoration(
+                    color: primaryColor,
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(
+                    Icons.no_accounts_outlined,
+                    color: secondaryColor,
+                    size: 100,
+                  ),
+                ),
+                const SizedBox(width: 20),
+                const Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Nome da Pessoa",
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      "alguma descricao a mais",
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.normal,
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
+            const SizedBox(height: 60),
+            const Column(
+              children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Texto",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: textColor,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                TextField(
+                  controller: null,
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    filled: true,
+                    fillColor: primaryColor,
+                  ),
+                  style: TextStyle(
+                    color: secondaryColor,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            const Column(
+              children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Texto",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: textColor,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                TextField(
+                  controller: null,
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    filled: true,
+                    fillColor: primaryColor,
+                  ),
+                  style: TextStyle(
+                    color: secondaryColor,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            const Column(
+              children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Texto",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: textColor,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                TextField(
+                  controller: null,
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    filled: true,
+                    fillColor: primaryColor,
+                  ),
+                  style: TextStyle(
+                    color: secondaryColor,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            const Column(
+              children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Texto",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: textColor,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                TextField(
+                  controller: null,
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    filled: true,
+                    fillColor: primaryColor,
+                  ),
+                  style: TextStyle(
+                    color: secondaryColor,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            const Column(
+              children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Texto",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: textColor,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                TextField(
+                  controller: null,
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    filled: true,
+                    fillColor: primaryColor,
+                  ),
+                  style: TextStyle(
+                    color: secondaryColor,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 60),
+            Row(
+              children: [
+                FilledButton(
+                  onPressed: () {
+                    // funcao para salvar
+                  },
+                  style: FilledButton.styleFrom(
+                      backgroundColor: accentColor,
+                      minimumSize: const Size(100, 60),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      )),
+                  child: const Text(
+                    "Salvar",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: textColor,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 20),
+                FilledButton(
+                  onPressed: () {
+                    // funcao para deletar
+                  },
+                  style: FilledButton.styleFrom(
+                      backgroundColor: accentColor,
+                      minimumSize: const Size(100, 60),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      )),
+                  child: const Text(
+                    "Deletar",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: textColor,
+                    ),
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
+      ),
+      bottomNavigationBar: const NavBottomBar(),
+    );
   }
 }
