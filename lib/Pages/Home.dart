@@ -17,7 +17,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const UserIcon(),
+      appBar: const UserIcon(showCross: false),
       body: Column(
         children: [
           Padding(
