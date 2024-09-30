@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto/Components/EventCard.dart';
 import 'package:projeto/Components/NavBottombar.dart';
 import 'package:projeto/Components/UserIcon.dart';
 import 'package:projeto/assets/Colors.dart';
@@ -13,10 +14,12 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       appBar: UserIcon(),
       body: Column(
-        
+        children: [
+          EventCArd(),
+        ],
       ),
       backgroundColor: secondaryColor,
       bottomNavigationBar: NavBottomBar(),
