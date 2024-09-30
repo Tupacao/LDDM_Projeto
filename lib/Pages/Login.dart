@@ -28,7 +28,7 @@ class _LoginState extends State<Login> {
               const Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  "Emai",
+                  "Email",
                   style: TextStyle(
                     fontSize: 25,
                     color: textColor,
