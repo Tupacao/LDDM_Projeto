@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:projeto/assets/Colors.dart';
 
 class EventCard extends StatelessWidget {
-  const EventCard({super.key});
+  final String goTo;
+
+  const EventCard({super.key, required this.goTo});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, "/event_data/:data");
+        Navigator.pushNamed(context, goTo);
       },
       child: Container(
         height: 100,

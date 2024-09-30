@@ -35,7 +35,7 @@ class _EventCalendarState extends State<EventCalendar> {
               itemBuilder: (context, index) {
                 return const Padding(
                   padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                  child: EventCalendarPop(),
+                  child: EventCalendarPop(goTo: "/event_data/:data"),
                 );
               },
             ),
@@ -49,7 +49,7 @@ class _EventCalendarState extends State<EventCalendar> {
                 },
                 style: FilledButton.styleFrom(
                     backgroundColor: accentColor,
-                    minimumSize: const Size(100, 60),
+                    minimumSize: const Size(150, 60),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     )),

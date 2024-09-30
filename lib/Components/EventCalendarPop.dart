@@ -3,13 +3,20 @@ import 'package:projeto/Components/EventCard.dart';
 import 'package:projeto/assets/Colors.dart';
 
 class EventCalendarPop extends StatelessWidget {
-  const EventCalendarPop({super.key});
+  
+  final String goTo;
+  
+  const EventCalendarPop(
+    {super.key,
+    required this.goTo
+    });
+
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        const EventCard(),
+        EventCard(goTo: goTo),
         Transform.translate(
           offset: const Offset(400, -15),
           child: Container(
