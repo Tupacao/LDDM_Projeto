@@ -55,7 +55,7 @@ class _YourEventsState extends State<YourEvents> {
                       borderRadius: BorderRadius.circular(8),
                     )),
                 child: const Text(
-                  "Deletar",
+                  "Apagar",
                   style: TextStyle(
                     fontSize: 20,
                     color: textColor,

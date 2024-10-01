@@ -61,26 +61,43 @@ class _CreateEventState extends State<CreateEvent> {
             const Column(
               children: [
                 Align(
-                  alignment: Alignment.centerLeft,
+                  alignment: Alignment.center,
                   child: Text(
-                    "Nome do Evento",
+                    "Criar novo evento:",
                     style: TextStyle(
-                      fontSize: 20,
-                      color: textColor,
+                      fontSize: 30,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
-                TextField(
-                  controller: null,
-                  keyboardType: TextInputType.text,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    filled: true,
-                    fillColor: primaryColor,
+                SizedBox(height: 20,),
+                SizedBox(
+                  width: 800,
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Nome do Evento",
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: textColor,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
-                  style: TextStyle(
-                    color: secondaryColor,
+                ),
+                SizedBox(
+                  width: 800,
+                  child: TextField(
+                    controller: null,
+                    keyboardType: TextInputType.text,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      filled: true,
+                      fillColor: secondaryColor,
+                    ),
+                    style: TextStyle(
+                      color: primaryColor,
+                    ),
                   ),
                 ),
               ],
@@ -88,27 +105,33 @@ class _CreateEventState extends State<CreateEvent> {
             const SizedBox(height: 20),
             const Column(
               children: [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Data",
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: textColor,
-                      fontWeight: FontWeight.bold,
+                SizedBox(
+                  width: 800,
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Data",
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: textColor,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
-                TextField(
-                  controller: null,
-                  keyboardType: TextInputType.text,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    filled: true,
-                    fillColor: primaryColor,
-                  ),
-                  style: TextStyle(
-                    color: secondaryColor,
+                SizedBox(
+                  width: 800,
+                  child: TextField(
+                    controller: null,
+                    keyboardType: TextInputType.datetime,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      filled: true,
+                      fillColor: secondaryColor,
+                    ),
+                    style: TextStyle(
+                      color: primaryColor,
+                    ),
                   ),
                 ),
               ],
@@ -116,25 +139,22 @@ class _CreateEventState extends State<CreateEvent> {
             const SizedBox(height: 20),
             Column(
               children: [
-                const Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Descrição",
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: textColor,
-                      fontWeight: FontWeight.bold,
+                const SizedBox(
+                  width: 800,
+                  child: const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Descrição",
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: textColor,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
-                Card(
-                  color: primaryColor,
-                  elevation: 4,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
+                SizedBox(
+                    width: 800,
                     child: TextFormField(
                       maxLines: 5,
                       decoration: const InputDecoration(
@@ -142,11 +162,9 @@ class _CreateEventState extends State<CreateEvent> {
                         hintText: 'Escreva um pouco sobre o evento...',
                       ),
                       style: const TextStyle(
-                        color: secondaryColor,
+                        color: primaryColor,
                       ),
-                    ),
-                  ),
-                ),
+                    )),
               ],
             ),
             const SizedBox(height: 20),
@@ -157,7 +175,7 @@ class _CreateEventState extends State<CreateEvent> {
                     // funcao para salvar
                   },
                   style: FilledButton.styleFrom(
-                      backgroundColor: accentColor,
+                      backgroundColor: primaryColor,
                       minimumSize: const Size(100, 60),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
@@ -166,7 +184,7 @@ class _CreateEventState extends State<CreateEvent> {
                     "Salvar",
                     style: TextStyle(
                       fontSize: 20,
-                      color: textColor,
+                      color: secondaryColor,
                     ),
                   ),
                 ),
@@ -182,10 +200,10 @@ class _CreateEventState extends State<CreateEvent> {
                         borderRadius: BorderRadius.circular(8),
                       )),
                   child: const Text(
-                    "Apagar",
+                    "Cancelar",
                     style: TextStyle(
                       fontSize: 20,
-                      color: textColor,
+                      color: secondaryColor,
                     ),
                   ),
                 ),

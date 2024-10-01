@@ -57,7 +57,7 @@ class _EventCalendarState extends State<EventCalendar> {
                   "Apagar Evento",
                   style: TextStyle(
                     fontSize: 20,
-                    color: textColor,
+                    color: secondaryColor,
                   ),
                 ),
               ),
