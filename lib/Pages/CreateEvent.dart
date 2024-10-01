@@ -20,50 +20,50 @@ class _CreateEventState extends State<CreateEvent> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Row(
-              children: [
-                Container(
-                  width: 120,
-                  height: 120,
-                  decoration: const BoxDecoration(
-                    color: primaryColor,
-                    shape: BoxShape.circle,
-                  ),
-                  child: const Icon(
-                    Icons.no_accounts_outlined,
-                    color: secondaryColor,
-                    size: 100,
-                  ),
-                ),
-                const SizedBox(width: 20),
-                const Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Nome da Pessoa",
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(
-                      "alguma descricao a mais",
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.normal,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
+            // Row(
+            //   children: [
+            //     Container(
+            //       width: 120,
+            //       height: 120,
+            //       decoration: const BoxDecoration(
+            //         color: primaryColor,
+            //         shape: BoxShape.circle,
+            //       ),
+            //       child: const Icon(
+            //         Icons.no_accounts_outlined,
+            //         color: secondaryColor,
+            //         size: 100,
+            //       ),
+            //     ),
+            //     const SizedBox(width: 20),
+            //     const Column(
+            //       crossAxisAlignment: CrossAxisAlignment.start,
+            //       children: [
+            //         Text(
+            //           "Nome do Evento",
+            //           style: TextStyle(
+            //             fontSize: 25,
+            //             fontWeight: FontWeight.bold,
+            //           ),
+            //         ),
+            //         Text(
+            //           "Descrição...",
+            //           style: TextStyle(
+            //             fontSize: 15,
+            //             fontWeight: FontWeight.normal,
+            //           ),
+            //         ),
+            //       ],
+            //     ),
+            //   ],
+            // ),
+            // const SizedBox(height: 20),
             const Column(
               children: [
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    "Texto",
+                    "Nome do Evento",
                     style: TextStyle(
                       fontSize: 20,
                       color: textColor,
@@ -91,7 +91,7 @@ class _CreateEventState extends State<CreateEvent> {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    "Texto",
+                    "Data",
                     style: TextStyle(
                       fontSize: 20,
                       color: textColor,
@@ -119,7 +119,7 @@ class _CreateEventState extends State<CreateEvent> {
                 const Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    "Texto",
+                    "Descrição",
                     style: TextStyle(
                       fontSize: 20,
                       color: textColor,
@@ -139,7 +139,7 @@ class _CreateEventState extends State<CreateEvent> {
                       maxLines: 5,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
-                        hintText: 'Escreva sua descrição aqui...',
+                        hintText: 'Escreva um pouco sobre o evento...',
                       ),
                       style: const TextStyle(
                         color: secondaryColor,
@@ -182,7 +182,7 @@ class _CreateEventState extends State<CreateEvent> {
                         borderRadius: BorderRadius.circular(8),
                       )),
                   child: const Text(
-                    "Deletar",
+                    "Apagar",
                     style: TextStyle(
                       fontSize: 20,
                       color: textColor,

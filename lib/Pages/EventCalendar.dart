@@ -54,7 +54,7 @@ class _EventCalendarState extends State<EventCalendar> {
                       borderRadius: BorderRadius.circular(8),
                     )),
                 child: const Text(
-                  "Deletar",
+                  "Apagar Evento",
                   style: TextStyle(
                     fontSize: 20,
                     color: textColor,
