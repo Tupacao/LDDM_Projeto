@@ -41,13 +41,20 @@ class _UserState extends State<User> {
                       "Nome do Usuário",
                       style: TextStyle(
                         fontSize: 25,
+                        fontWeight: FontWeight.normal,
+                      ),
+                    ),
+                    Text(
+                      "eumesmo@gmail.com",
+                      style: TextStyle(
+                        fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
                       "Descrição...",
                       style: TextStyle(
-                        fontSize: 15,
+                        fontSize: 18,
                         fontWeight: FontWeight.normal,
                       ),
                     ),
