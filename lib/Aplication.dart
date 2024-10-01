@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projeto/Components/NavBottombarIndice.dart';
 import 'package:projeto/Pages/CreateEvent.dart';
-import 'package:projeto/Pages/EventCalendar.dart';
+import 'package:projeto/Pages/Calendar.dart';
 import 'package:projeto/Pages/EventData.dart';
 import 'package:projeto/Pages/Home.dart';
 import 'package:projeto/Pages/YourEvents.dart';
@@ -26,7 +26,6 @@ class _AplicationState extends State<Aplication> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: const UserIcon(showCross: false),
       body: IndexedStack(
         index: index,
         children: const [
@@ -39,7 +38,7 @@ class _AplicationState extends State<Aplication> {
         ],
       ),
       bottomNavigationBar: NavBottomBarIndice(
-        onTabSelected: _onTabSelected, // Passa o callback para o NavBottomBar
+        onTabSelected: _onTabSelected,
       ),
     );
   }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:projeto/Components/UserIcon.dart';
 import 'package:projeto/assets/Colors.dart';
 
 class CreateEvent extends StatefulWidget {
@@ -13,50 +12,11 @@ class _CreateEventState extends State<CreateEvent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const UserIcon(showCross: false),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Row(
-            //   children: [
-            //     Container(
-            //       width: 120,
-            //       height: 120,
-            //       decoration: const BoxDecoration(
-            //         color: primaryColor,
-            //         shape: BoxShape.circle,
-            //       ),
-            //       child: const Icon(
-            //         Icons.no_accounts_outlined,
-            //         color: secondaryColor,
-            //         size: 100,
-            //       ),
-            //     ),
-            //     const SizedBox(width: 20),
-            //     const Column(
-            //       crossAxisAlignment: CrossAxisAlignment.start,
-            //       children: [
-            //         Text(
-            //           "Nome do Evento",
-            //           style: TextStyle(
-            //             fontSize: 25,
-            //             fontWeight: FontWeight.bold,
-            //           ),
-            //         ),
-            //         Text(
-            //           "Descrição...",
-            //           style: TextStyle(
-            //             fontSize: 15,
-            //             fontWeight: FontWeight.normal,
-            //           ),
-            //         ),
-            //       ],
-            //     ),
-            //   ],
-            // ),
-            // const SizedBox(height: 20),
             const Column(
               children: [
                 Align(

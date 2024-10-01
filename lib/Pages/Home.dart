@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:projeto/Components/EventCard.dart';
-import 'package:projeto/Components/UserIcon.dart';
 import 'package:projeto/assets/Colors.dart';
 
 class Home extends StatefulWidget {
@@ -16,7 +15,6 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const UserIcon(showCross: false),
       body: Column(
         children: [
           Padding(

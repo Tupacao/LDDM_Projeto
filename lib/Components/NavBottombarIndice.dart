@@ -23,7 +23,8 @@ class _NavBottomBarIndiceState extends State<NavBottomBarIndice> {
             children: [
               GestureDetector(
                 onTap: () {
-                  widget.onTabSelected(2); // Atualiza o índice para "EventCalendar"
+                  widget.onTabSelected(
+                      2); // Atualiza o índice para "EventCalendar"
                 },
                 child: Container(
                   width: 60,
@@ -41,7 +42,8 @@ class _NavBottomBarIndiceState extends State<NavBottomBarIndice> {
               ),
               GestureDetector(
                 onTap: () {
-                  widget.onTabSelected(4); // Atualiza o índice para "CreateEvent"
+                  widget
+                      .onTabSelected(4); // Atualiza o índice para "CreateEvent"
                 },
                 child: Container(
                   width: 60,
@@ -59,7 +61,8 @@ class _NavBottomBarIndiceState extends State<NavBottomBarIndice> {
               ),
               GestureDetector(
                 onTap: () {
-                  widget.onTabSelected(5); // Atualiza o índice para "YourEvents"
+                  widget
+                      .onTabSelected(5); // Atualiza o índice para "YourEvents"
                 },
                 child: Container(
                   width: 60,
@@ -95,24 +98,58 @@ class _NavBottomBarIndiceState extends State<NavBottomBarIndice> {
               ),
             ],
           ),
+          // Transform.translate(
+          //   offset: const Offset(0, -50),
+          //   child: Stack(
+          //     alignment: Alignment.center,
+          //     children: [
+          //       Container(
+          //         width: 80,
+          //         height: 80,
+          //         decoration: const BoxDecoration(
+          //           color: secondaryColor,
+          //           shape: BoxShape.circle,
+          //         ),
+          //       ),
+          //       GestureDetector(
+          //         onTap: () {
+          //           widget.onTabSelected(0); // Atualiza o índice para "Home"
+          //         },
+          //         child: Container(
+          //           width: 60,
+          //           height: 60,
+          //           decoration: const BoxDecoration(
+          //             color: primaryColor,
+          //             shape: BoxShape.circle,
+          //           ),
+          //           child: const Icon(
+          //             Icons.home,
+          //             color: secondaryColor,
+          //             size: 40,
+          //           ),
+          //         ),
+          //       ),
+          //     ],
+          //   ),
+          // ),
           Transform.translate(
             offset: const Offset(0, -50),
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                Container(
-                  width: 80,
-                  height: 80,
-                  decoration: const BoxDecoration(
-                    color: secondaryColor,
-                    shape: BoxShape.circle,
+            child: GestureDetector(
+              onTap: () {
+                widget.onTabSelected(0); // Atualiza o índice para "Home"
+              },
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  Container(
+                    width: 80,
+                    height: 80,
+                    decoration: const BoxDecoration(
+                      color: secondaryColor,
+                      shape: BoxShape.circle,
+                    ),
                   ),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    widget.onTabSelected(0); // Atualiza o índice para "Home"
-                  },
-                  child: Container(
+                  Container(
                     width: 60,
                     height: 60,
                     decoration: const BoxDecoration(
@@ -125,8 +162,8 @@ class _NavBottomBarIndiceState extends State<NavBottomBarIndice> {
                       size: 40,
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ],

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:projeto/Components/EventCalendarPop.dart';
-import 'package:projeto/Components/UserIcon.dart';
 import 'package:projeto/assets/Colors.dart';
 
 class EventCalendar extends StatefulWidget {
@@ -15,7 +14,6 @@ class _EventCalendarState extends State<EventCalendar> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: secondaryColor,
-      appBar: const UserIcon(showCross: false),
       body: Column(
         children: [
           const SizedBox(
