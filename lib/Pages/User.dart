@@ -28,7 +28,7 @@ class _UserState extends State<User> {
                     shape: BoxShape.circle,
                   ),
                   child: const Icon(
-                    Icons.no_accounts_outlined,
+                    Icons.account_circle,
                     color: secondaryColor,
                     size: 100,
                   ),
@@ -161,22 +161,23 @@ class _UserState extends State<User> {
             ),
             const SizedBox(height: 60),
             Row(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 FilledButton(
                   onPressed: () {
                     // funcao para salvar
                   },
                   style: FilledButton.styleFrom(
-                      backgroundColor: accentColor,
+                      backgroundColor: primaryColor,
                       minimumSize: const Size(100, 60),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       )),
                   child: const Text(
-                    "Salvar",
+                    "Salvar Informações",
                     style: TextStyle(
                       fontSize: 20,
-                      color: textColor,
+                      color: secondaryColor,
                     ),
                   ),
                 ),
@@ -192,10 +193,10 @@ class _UserState extends State<User> {
                         borderRadius: BorderRadius.circular(8),
                       )),
                   child: const Text(
-                    "Deletar",
+                    "Cancelar",
                     style: TextStyle(
                       fontSize: 20,
-                      color: textColor,
+                      color: secondaryColor,
                     ),
                   ),
                 ),

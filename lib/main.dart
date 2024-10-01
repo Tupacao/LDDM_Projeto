@@ -11,7 +11,7 @@ import 'package:projeto/Pages/YourEvents.dart';
 void main (){
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    title: "Projeto LDDM",
+    title: "PUC Minas Eventos",
     initialRoute: "/",
     routes: {
       '/': (context) => const Login(),

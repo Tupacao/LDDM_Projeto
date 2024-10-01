@@ -21,18 +21,25 @@ class _LoginState extends State<Login> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(""),
-                  const SizedBox(height: 100),
+                  Image.asset("lib/assets/images/PucEventos.png"),
+                  const SizedBox(height: 20,),
+                  const SizedBox(
+                      height: 40,
+                      child: Text("Faça seu Login",
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: textColor,
+                              fontWeight: FontWeight.bold))),
                   Column(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         width: 600,
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
                             "Email",
                             style: TextStyle(
-                              fontSize: 25,
+                              fontSize: 20,
                               color: textColor,
                               fontWeight: FontWeight.bold,
                             ),
@@ -54,17 +61,17 @@ class _LoginState extends State<Login> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 10),
                   Column(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         width: 600,
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
                             "Senha",
                             style: TextStyle(
-                              fontSize: 25,
+                              fontSize: 20,
                               color: textColor,
                               fontWeight: FontWeight.bold,
                             ),
@@ -77,7 +84,6 @@ class _LoginState extends State<Login> {
                           controller: _passwordController,
                           keyboardType: TextInputType.visiblePassword,
                           obscureText: true,
-                          maxLength: 15,
                           decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                           ),
@@ -94,7 +100,6 @@ class _LoginState extends State<Login> {
                       Navigator.pushNamed(context, '/home');
                     },
                     style: FilledButton.styleFrom(
-                        
                         backgroundColor: primaryColor,
                         minimumSize: const Size(200, 60),
                         shape: RoundedRectangleBorder(
@@ -109,7 +114,7 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 40),
+                  const SizedBox(height: 10),
                   TextButton(
                     onPressed: () {
                       Navigator.pushNamed(context, '/register');

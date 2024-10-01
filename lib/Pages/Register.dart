@@ -20,23 +20,27 @@ class _RegisterState extends State<Register> {
     return Scaffold(
         appBar: AppBar(),
         body: Padding(
-            padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+            padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(""),
-                  const SizedBox(height: 100),
+                  SizedBox(
+                    width: 150,
+                    height: 150,
+                    child: Image.asset("lib/assets/images/PucEventos.png"),
+                  ),
+                  const SizedBox(height: 10),
                   Column(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         width: 600,
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
                             "Nome",
                             style: TextStyle(
-                              fontSize: 25,
+                              fontSize: 20,
                               color: textColor,
                               fontWeight: FontWeight.bold,
                             ),
@@ -52,23 +56,23 @@ class _RegisterState extends State<Register> {
                             border: OutlineInputBorder(),
                           ),
                           style: const TextStyle(
-                            color: secondaryColor,
+                            color: primaryColor,
                           ),
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 10),
                   Column(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         width: 600,
-                        child: const Align(
+                        child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
                             "Email",
                             style: TextStyle(
-                              fontSize: 25,
+                              fontSize: 20,
                               color: textColor,
                               fontWeight: FontWeight.bold,
                             ),
@@ -84,23 +88,23 @@ class _RegisterState extends State<Register> {
                             border: OutlineInputBorder(),
                           ),
                           style: const TextStyle(
-                            color: secondaryColor,
+                            color: primaryColor,
                           ),
                         ),
                       )
                     ],
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 10),
                   Column(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         width: 600,
-                        child: const Align(
+                        child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
                             "Senha",
                             style: TextStyle(
-                              fontSize: 25,
+                              fontSize: 20,
                               color: textColor,
                               fontWeight: FontWeight.bold,
                             ),
@@ -126,14 +130,14 @@ class _RegisterState extends State<Register> {
                   ),
                   Column(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         width: 600,
-                        child: const Align(
+                        child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
                             "Confirmar Senha",
                             style: TextStyle(
-                              fontSize: 25,
+                              fontSize: 20,
                               color: textColor,
                               fontWeight: FontWeight.bold,
                             ),
@@ -157,7 +161,7 @@ class _RegisterState extends State<Register> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 40),
+                  const SizedBox(height: 10),
                   FilledButton(
                     onPressed: () {
                       Navigator.pushNamed(context, '/home');
@@ -177,7 +181,7 @@ class _RegisterState extends State<Register> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 40),
+                  const SizedBox(height: 10),
                   TextButton(
                     onPressed: () {
                       Navigator.pop(context);
