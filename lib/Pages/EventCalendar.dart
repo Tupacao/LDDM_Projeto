@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:projeto/Components/EventCalendarPop.dart';
-import 'package:projeto/Components/NavBottombar.dart';
 import 'package:projeto/Components/UserIcon.dart';
 import 'package:projeto/assets/Colors.dart';
 
@@ -66,7 +65,6 @@ class _EventCalendarState extends State<EventCalendar> {
           ])
         ],
       ),
-      bottomNavigationBar: const NavBottomBar(),
     );
   }
 }

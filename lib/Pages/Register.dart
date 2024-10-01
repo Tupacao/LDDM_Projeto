@@ -197,6 +197,7 @@ class _RegisterState extends State<Register> {
                   ),
                 ],
               ),
-            )));
+            )),
+            backgroundColor: secondaryColor,);
   }
 }
