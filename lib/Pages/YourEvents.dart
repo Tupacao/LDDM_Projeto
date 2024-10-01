@@ -15,14 +15,14 @@ class YourEvents extends StatefulWidget {
 class _YourEventsState extends State<YourEvents> {
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       appBar: const UserIcon(showCross: false),
       body: Column(
         children: [
           const Align(
             alignment: Alignment.center,
             child: Text(
-              "Seus Eventos Criados",
+              "Eventos Criados",
               style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
@@ -55,10 +55,10 @@ class _YourEventsState extends State<YourEvents> {
                       borderRadius: BorderRadius.circular(8),
                     )),
                 child: const Text(
-                  "Deletar",
+                  "Apagar Evento",
                   style: TextStyle(
                     fontSize: 20,
-                    color: textColor,
+                    color: secondaryColor,
                   ),
                 ),
               ),

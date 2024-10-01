@@ -20,95 +20,118 @@ class _CreateEventState extends State<CreateEvent> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Row(
+            // Row(
+            //   children: [
+            //     Container(
+            //       width: 120,
+            //       height: 120,
+            //       decoration: const BoxDecoration(
+            //         color: primaryColor,
+            //         shape: BoxShape.circle,
+            //       ),
+            //       child: const Icon(
+            //         Icons.no_accounts_outlined,
+            //         color: secondaryColor,
+            //         size: 100,
+            //       ),
+            //     ),
+            //     const SizedBox(width: 20),
+            //     const Column(
+            //       crossAxisAlignment: CrossAxisAlignment.start,
+            //       children: [
+            //         Text(
+            //           "Nome do Evento",
+            //           style: TextStyle(
+            //             fontSize: 25,
+            //             fontWeight: FontWeight.bold,
+            //           ),
+            //         ),
+            //         Text(
+            //           "Descrição...",
+            //           style: TextStyle(
+            //             fontSize: 15,
+            //             fontWeight: FontWeight.normal,
+            //           ),
+            //         ),
+            //       ],
+            //     ),
+            //   ],
+            // ),
+            // const SizedBox(height: 20),
+            const Column(
               children: [
-                Container(
-                  width: 120,
-                  height: 120,
-                  decoration: const BoxDecoration(
-                    color: primaryColor,
-                    shape: BoxShape.circle,
-                  ),
-                  child: const Icon(
-                    Icons.no_accounts_outlined,
-                    color: secondaryColor,
-                    size: 100,
+                Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    "Criar novo evento:",
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
-                const SizedBox(width: 20),
-                const Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Nome da Pessoa",
+                SizedBox(height: 20,),
+                SizedBox(
+                  width: 800,
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Nome do Evento",
                       style: TextStyle(
-                        fontSize: 25,
+                        fontSize: 20,
+                        color: textColor,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Text(
-                      "alguma descricao a mais",
+                  ),
+                ),
+                SizedBox(
+                  width: 800,
+                  child: TextField(
+                    controller: null,
+                    keyboardType: TextInputType.text,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      filled: true,
+                      fillColor: secondaryColor,
+                    ),
+                    style: TextStyle(
+                      color: primaryColor,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 20),
+            const Column(
+              children: [
+                SizedBox(
+                  width: 800,
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Data",
                       style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.normal,
+                        fontSize: 20,
+                        color: textColor,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                  ],
+                  ),
                 ),
-              ],
-            ),
-            const SizedBox(height: 20),
-            const Column(
-              children: [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Texto",
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: textColor,
-                      fontWeight: FontWeight.bold,
+                SizedBox(
+                  width: 800,
+                  child: TextField(
+                    controller: null,
+                    keyboardType: TextInputType.datetime,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      filled: true,
+                      fillColor: secondaryColor,
                     ),
-                  ),
-                ),
-                TextField(
-                  controller: null,
-                  keyboardType: TextInputType.text,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    filled: true,
-                    fillColor: primaryColor,
-                  ),
-                  style: TextStyle(
-                    color: secondaryColor,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
-            const Column(
-              children: [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Texto",
                     style: TextStyle(
-                      fontSize: 20,
-                      color: textColor,
-                      fontWeight: FontWeight.bold,
+                      color: primaryColor,
                     ),
-                  ),
-                ),
-                TextField(
-                  controller: null,
-                  keyboardType: TextInputType.text,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    filled: true,
-                    fillColor: primaryColor,
-                  ),
-                  style: TextStyle(
-                    color: secondaryColor,
                   ),
                 ),
               ],
@@ -116,37 +139,32 @@ class _CreateEventState extends State<CreateEvent> {
             const SizedBox(height: 20),
             Column(
               children: [
-                const Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Texto",
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: textColor,
-                      fontWeight: FontWeight.bold,
+                const SizedBox(
+                  width: 800,
+                  child: const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Descrição",
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: textColor,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
-                Card(
-                  color: primaryColor,
-                  elevation: 4,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
+                SizedBox(
+                    width: 800,
                     child: TextFormField(
                       maxLines: 5,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
-                        hintText: 'Escreva sua descrição aqui...',
+                        hintText: 'Escreva um pouco sobre o evento...',
                       ),
                       style: const TextStyle(
-                        color: secondaryColor,
+                        color: primaryColor,
                       ),
-                    ),
-                  ),
-                ),
+                    )),
               ],
             ),
             const SizedBox(height: 20),
@@ -157,7 +175,7 @@ class _CreateEventState extends State<CreateEvent> {
                     // funcao para salvar
                   },
                   style: FilledButton.styleFrom(
-                      backgroundColor: accentColor,
+                      backgroundColor: primaryColor,
                       minimumSize: const Size(100, 60),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
@@ -166,7 +184,7 @@ class _CreateEventState extends State<CreateEvent> {
                     "Salvar",
                     style: TextStyle(
                       fontSize: 20,
-                      color: textColor,
+                      color: secondaryColor,
                     ),
                   ),
                 ),
@@ -182,10 +200,10 @@ class _CreateEventState extends State<CreateEvent> {
                         borderRadius: BorderRadius.circular(8),
                       )),
                   child: const Text(
-                    "Deletar",
+                    "Cancelar",
                     style: TextStyle(
                       fontSize: 20,
-                      color: textColor,
+                      color: secondaryColor,
                     ),
                   ),
                 ),

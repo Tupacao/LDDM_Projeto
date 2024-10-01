@@ -28,7 +28,7 @@ class _UserState extends State<User> {
                     shape: BoxShape.circle,
                   ),
                   child: const Icon(
-                    Icons.no_accounts_outlined,
+                    Icons.account_circle,
                     color: secondaryColor,
                     size: 100,
                   ),
@@ -38,16 +38,23 @@ class _UserState extends State<User> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Nome da Pessoa",
+                      "Nome do Usuário",
                       style: TextStyle(
                         fontSize: 25,
+                        fontWeight: FontWeight.normal,
+                      ),
+                    ),
+                    Text(
+                      "eumesmo@gmail.com",
+                      style: TextStyle(
+                        fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
-                      "alguma descricao a mais",
+                      "Descrição...",
                       style: TextStyle(
-                        fontSize: 15,
+                        fontSize: 18,
                         fontWeight: FontWeight.normal,
                       ),
                     ),
@@ -58,27 +65,27 @@ class _UserState extends State<User> {
             const SizedBox(height: 60),
             const Column(
               children: [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Texto",
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: textColor,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                SizedBox(
+                  width: 800,
+                  child: Text("Editar informações do Perfil:",
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: textColor,
+                        fontWeight: FontWeight.bold,
+                      )),
                 ),
-                TextField(
-                  controller: null,
-                  keyboardType: TextInputType.text,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    filled: true,
-                    fillColor: primaryColor,
-                  ),
-                  style: TextStyle(
-                    color: secondaryColor,
+                SizedBox(
+                  width: 800,
+                  child: TextField(
+                    controller: null,
+                    keyboardType: TextInputType.text,
+                    decoration: InputDecoration(
+                      label: Text("Nome de Usuário"),
+                      border: OutlineInputBorder(),
+                    ),
+                    style: TextStyle(
+                      color: primaryColor,
+                    ),
                   ),
                 ),
               ],
@@ -86,27 +93,18 @@ class _UserState extends State<User> {
             const SizedBox(height: 10),
             const Column(
               children: [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Texto",
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: textColor,
-                      fontWeight: FontWeight.bold,
+                SizedBox(
+                  width: 800,
+                  child: TextField(
+                    controller: null,
+                    keyboardType: TextInputType.text,
+                    decoration: InputDecoration(
+                      label: Text("Email"),
+                      border: OutlineInputBorder(),
                     ),
-                  ),
-                ),
-                TextField(
-                  controller: null,
-                  keyboardType: TextInputType.text,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    filled: true,
-                    fillColor: primaryColor,
-                  ),
-                  style: TextStyle(
-                    color: secondaryColor,
+                    style: TextStyle(
+                      color: primaryColor,
+                    ),
                   ),
                 ),
               ],
@@ -114,27 +112,18 @@ class _UserState extends State<User> {
             const SizedBox(height: 10),
             const Column(
               children: [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Texto",
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: textColor,
-                      fontWeight: FontWeight.bold,
+                SizedBox(
+                  width: 800,
+                  child: TextField(
+                    controller: null,
+                    keyboardType: TextInputType.text,
+                    decoration: InputDecoration(
+                      label: Text("Nova Senha"),
+                      border: OutlineInputBorder(),
                     ),
-                  ),
-                ),
-                TextField(
-                  controller: null,
-                  keyboardType: TextInputType.text,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    filled: true,
-                    fillColor: primaryColor,
-                  ),
-                  style: TextStyle(
-                    color: secondaryColor,
+                    style: TextStyle(
+                      color: primaryColor,
+                    ),
                   ),
                 ),
               ],
@@ -142,27 +131,18 @@ class _UserState extends State<User> {
             const SizedBox(height: 10),
             const Column(
               children: [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Texto",
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: textColor,
-                      fontWeight: FontWeight.bold,
+                SizedBox(
+                  width: 800,
+                  child: TextField(
+                    controller: null,
+                    keyboardType: TextInputType.text,
+                    decoration: InputDecoration(
+                      label: Text("Confirmar nova senha"),
+                      border: OutlineInputBorder(),
                     ),
-                  ),
-                ),
-                TextField(
-                  controller: null,
-                  keyboardType: TextInputType.text,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    filled: true,
-                    fillColor: primaryColor,
-                  ),
-                  style: TextStyle(
-                    color: secondaryColor,
+                    style: TextStyle(
+                      color: primaryColor,
+                    ),
                   ),
                 ),
               ],
@@ -170,49 +150,41 @@ class _UserState extends State<User> {
             const SizedBox(height: 10),
             const Column(
               children: [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Texto",
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: textColor,
-                      fontWeight: FontWeight.bold,
+                SizedBox(
+                  width: 800,
+                  child: TextField(
+                    controller: null,
+                    keyboardType: TextInputType.text,
+                    decoration: InputDecoration(
+                      label: Text("Descrição do perfil"),
+                      border: OutlineInputBorder(),
                     ),
-                  ),
-                ),
-                TextField(
-                  controller: null,
-                  keyboardType: TextInputType.text,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    filled: true,
-                    fillColor: primaryColor,
-                  ),
-                  style: TextStyle(
-                    color: secondaryColor,
+                    style: TextStyle(
+                      color: primaryColor,
+                    ),
                   ),
                 ),
               ],
             ),
             const SizedBox(height: 60),
             Row(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 FilledButton(
                   onPressed: () {
                     // funcao para salvar
                   },
                   style: FilledButton.styleFrom(
-                      backgroundColor: accentColor,
+                      backgroundColor: primaryColor,
                       minimumSize: const Size(100, 60),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       )),
                   child: const Text(
-                    "Salvar",
+                    "Salvar Informações",
                     style: TextStyle(
                       fontSize: 20,
-                      color: textColor,
+                      color: secondaryColor,
                     ),
                   ),
                 ),
@@ -228,10 +200,10 @@ class _UserState extends State<User> {
                         borderRadius: BorderRadius.circular(8),
                       )),
                   child: const Text(
-                    "Deletar",
+                    "Cancelar",
                     style: TextStyle(
                       fontSize: 20,
-                      color: textColor,
+                      color: secondaryColor,
                     ),
                   ),
                 ),

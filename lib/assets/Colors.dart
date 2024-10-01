@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 // Definindo cores constantes para o projeto
 const Color primaryColor = Color(0xFF5271FF);
+const Color lightBlue = Color.fromARGB(255, 176, 188, 244);
 const Color secondaryColor = Color(0xFFFFFFFF);
 const Color accentColor = Color(0xFFFFBD59);   
 

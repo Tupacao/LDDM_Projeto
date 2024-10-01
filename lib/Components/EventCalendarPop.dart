@@ -24,9 +24,9 @@ class EventCalendarPop extends StatelessWidget {
             height: 40,
             decoration: BoxDecoration(
               color: secondaryColor,
-              shape: BoxShape.circle,
+              borderRadius: BorderRadius.circular(10),
               border: Border.all(
-                color: textColor, 
+                color: primaryColor, 
                 width: 2, 
               ),
             ),

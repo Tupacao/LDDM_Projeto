@@ -15,11 +15,11 @@ class _EventCalendarState extends State<EventCalendar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: secondaryColor,
       appBar: const UserIcon(showCross: false),
       body: Column(
         children: [
-          const Align(
-            alignment: Alignment.center,
+          const SizedBox(
             child: Text(
               "Agenda de Eventos",
               style: TextStyle(
@@ -40,7 +40,8 @@ class _EventCalendarState extends State<EventCalendar> {
               },
             ),
           ),
-          Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+          Row(mainAxisAlignment: MainAxisAlignment.end, 
+          children: [
             Padding(
               padding: const EdgeInsets.all(20),
               child: FilledButton(
@@ -54,10 +55,10 @@ class _EventCalendarState extends State<EventCalendar> {
                       borderRadius: BorderRadius.circular(8),
                     )),
                 child: const Text(
-                  "Deletar",
+                  "Apagar Evento",
                   style: TextStyle(
                     fontSize: 20,
-                    color: textColor,
+                    color: secondaryColor,
                   ),
                 ),
               ),
@@ -65,7 +66,6 @@ class _EventCalendarState extends State<EventCalendar> {
           ])
         ],
       ),
-      backgroundColor: secondaryColor,
       bottomNavigationBar: const NavBottomBar(),
     );
   }
