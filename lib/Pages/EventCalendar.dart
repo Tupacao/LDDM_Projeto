@@ -65,7 +65,6 @@ class _EventCalendarState extends State<EventCalendar> {
           ])
         ],
       ),
-      backgroundColor: secondaryColor,
       bottomNavigationBar: const NavBottomBar(),
     );
   }
