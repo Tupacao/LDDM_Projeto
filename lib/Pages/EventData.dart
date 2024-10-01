@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:projeto/Components/NavBottombar.dart';
 import 'package:projeto/Components/UserIcon.dart';
 import 'package:projeto/assets/Colors.dart';
 
@@ -100,7 +99,6 @@ class _EventDataState extends State<EventData> {
             ])),
       ])),
       backgroundColor: secondaryColor,
-      bottomNavigationBar: const NavBottomBar(),
     );
   }
 }

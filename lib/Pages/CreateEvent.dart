@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:projeto/Components/NavBottombar.dart';
 import 'package:projeto/Components/UserIcon.dart';
 import 'package:projeto/assets/Colors.dart';
 
@@ -61,7 +60,7 @@ class _CreateEventState extends State<CreateEvent> {
             const Column(
               children: [
                 Align(
-                  alignment: Alignment.center,
+                  alignment: Alignment.centerLeft,
                   child: Text(
                     "Criar novo evento:",
                     style: TextStyle(
@@ -169,6 +168,7 @@ class _CreateEventState extends State<CreateEvent> {
             ),
             const SizedBox(height: 20),
             Row(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 FilledButton(
                   onPressed: () {
@@ -213,7 +213,6 @@ class _CreateEventState extends State<CreateEvent> {
         ),
       ),
       backgroundColor: secondaryColor,
-      bottomNavigationBar: const NavBottomBar(),
     );
   }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:projeto/Components/EventCard.dart';
-import 'package:projeto/Components/NavBottombar.dart';
 import 'package:projeto/Components/UserIcon.dart';
 import 'package:projeto/assets/Colors.dart';
 
@@ -88,7 +87,6 @@ class _HomeState extends State<Home> {
         ],
       ),
       backgroundColor: secondaryColor,
-      bottomNavigationBar: const NavBottomBar(),
     );
   }
 }

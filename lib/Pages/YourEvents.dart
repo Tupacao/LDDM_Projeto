@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:projeto/Components/NavBottombar.dart';
 import 'package:projeto/Components/UserIcon.dart';
 import 'package:projeto/assets/Colors.dart';
 
@@ -41,7 +40,7 @@ class _YourEventsState extends State<YourEvents> {
               },
             ),
           ),
-          Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+          Row(mainAxisAlignment: MainAxisAlignment.end, children: [
             Padding(
               padding: const EdgeInsets.all(20),
               child: FilledButton(
@@ -67,7 +66,6 @@ class _YourEventsState extends State<YourEvents> {
         ],
       ),
       backgroundColor: secondaryColor,
-      bottomNavigationBar: const NavBottomBar(),
     );
   }
 }

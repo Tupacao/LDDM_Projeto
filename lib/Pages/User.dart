@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:projeto/Components/NavBottombar.dart';
 import 'package:projeto/assets/Colors.dart';
 
 class User extends StatefulWidget {
@@ -62,7 +61,7 @@ class _UserState extends State<User> {
                 )
               ],
             ),
-            const SizedBox(height: 60),
+            const SizedBox(height: 10),
             const Column(
               children: [
                 SizedBox(
@@ -166,7 +165,7 @@ class _UserState extends State<User> {
                 ),
               ],
             ),
-            const SizedBox(height: 60),
+            const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -212,7 +211,6 @@ class _UserState extends State<User> {
           ],
         ),
       ),
-      bottomNavigationBar: const NavBottomBar(),
     );
   }
 }
