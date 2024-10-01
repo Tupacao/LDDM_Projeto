@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:projeto/Components/UserIcon.dart';
 import 'package:projeto/assets/Colors.dart';
 
 class EventData extends StatefulWidget {
@@ -13,7 +12,7 @@ class _EventDataState extends State<EventData> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const UserIcon(showCross: true),
+      appBar: AppBar(),
       body: Center(
           child: Column(children: [
         SizedBox(

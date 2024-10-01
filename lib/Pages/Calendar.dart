@@ -14,7 +14,7 @@ class _EventCalendarState extends State<EventCalendar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: secondaryColor,
+      backgroundColor: secondaryColor, 
       appBar: const UserIcon(showCross: false),
       body: Column(
         children: [

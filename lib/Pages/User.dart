@@ -73,6 +73,7 @@ class _UserState extends State<User> {
                         fontWeight: FontWeight.bold,
                       )),
                 ),
+                SizedBox(height: 10),
                 SizedBox(
                   width: 800,
                   child: TextField(
@@ -165,7 +166,7 @@ class _UserState extends State<User> {
                 ),
               ],
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [

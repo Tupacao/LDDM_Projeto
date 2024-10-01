@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:projeto/Components/UserIcon.dart';
 import 'package:projeto/assets/Colors.dart';
 
 import '../Components/EventCalendarPop.dart';
@@ -15,7 +14,6 @@ class _YourEventsState extends State<YourEvents> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const UserIcon(showCross: false),
       body: Column(
         children: [
           const Align(
