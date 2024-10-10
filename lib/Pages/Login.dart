@@ -11,8 +11,9 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   List<Map<String, String>> users = [
     {'email': 'aluno@gmail.com', 'senha': 'ps1'},
-    {'email': 'professor@example.com', 'senha': 'ps2'},
-    {'email': 'empresa@example.com', 'senha': 'ps3'}
+    {'email': 'professor@gmail.com', 'senha': 'ps2'},
+    {'email': 'empresa@gmail.com', 'senha': 'ps3'},
+    {'email': 'adm', 'senha': '123'}
   ];
 
   int testLogin() {
@@ -24,6 +25,9 @@ class _LoginState extends State<Login> {
       return 2;
     } else if (_emailController.text == users[2]['email'] &&
         _passwordController.text == users[2]['senha']) {
+      return 3;
+    } else if (_emailController.text == users[3]['email'] &&
+        _passwordController.text == users[3]['senha']) {
       return 3;
     } else {
       return -1;
@@ -133,7 +137,8 @@ class _LoginState extends State<Login> {
                           context: context,
                           builder: (context) => const AlertDialog(
                                 title: Text("Erro de Login"),
-                                content: Text("Email ou senha inválidos, tente novamente"),
+                                content: Text(
+                                    "Email ou senha inválidos, tente novamente"),
                               ));
                     }
                   },

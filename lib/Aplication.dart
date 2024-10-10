@@ -5,6 +5,7 @@ import 'package:projeto/Pages/Calendar.dart';
 import 'package:projeto/Pages/EventData.dart';
 import 'package:projeto/Pages/Home.dart';
 import 'package:projeto/Pages/YourEvents.dart';
+import 'package:projeto/assets/Colors.dart';
 import 'Pages/User.dart';
 
 class Aplication extends StatefulWidget {
@@ -15,9 +16,16 @@ class Aplication extends StatefulWidget {
 }
 
 class _AplicationState extends State<Aplication> {
-
-  // int value = ModalRoute.of(context)?.settings.arguments as int;
+  int value = 0; // Inicializa sem valor até obter o argumento
   int index = 0;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    // Recupera o valor passado pela rota e armazena
+    value = (ModalRoute.of(context)?.settings.arguments as int?)!;
+  }
 
   void _onTabSelected(int selectedIndex) {
     setState(() {
@@ -28,19 +36,21 @@ class _AplicationState extends State<Aplication> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: secondaryColor,
       body: IndexedStack(
         index: index,
-        children: const [
-          Home(),
-          User(),
-          EventCalendar(),
-          EventData(),
-          CreateEvent(),
-          YourEvents(),
+        children: [
+          const Home(),
+          const User(),
+          const EventCalendar(),
+          const EventData(),
+          if (value == 2 || value == 3) const CreateEvent() else const SizedBox.shrink(),
+          if (value == 2 || value == 3) const YourEvents() else const SizedBox.shrink(),
         ],
       ),
       bottomNavigationBar: NavBottomBarIndice(
         onTabSelected: _onTabSelected,
+        value: value,
       ),
     );
   }

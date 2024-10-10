@@ -12,7 +12,9 @@ class _EventDataState extends State<EventData> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: secondaryColor,
+      ),
       body: Center(
           child: Column(children: [
         SizedBox(
