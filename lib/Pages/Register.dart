@@ -18,7 +18,9 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: secondaryColor,
+      ),
       body: Padding(
           padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
           child: Center(

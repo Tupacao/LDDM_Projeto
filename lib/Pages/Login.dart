@@ -9,6 +9,27 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  List<Map<String, String>> users = [
+    {'email': 'aluno@gmail.com', 'senha': 'ps1'},
+    {'email': 'professor@example.com', 'senha': 'ps2'},
+    {'email': 'empresa@example.com', 'senha': 'ps3'}
+  ];
+
+  int testLogin() {
+    if (_emailController.text == users[0]['email'] &&
+        _passwordController.text == users[0]['senha']) {
+      return 1;
+    } else if (_emailController.text == users[1]['email'] &&
+        _passwordController.text == users[1]['senha']) {
+      return 2;
+    } else if (_emailController.text == users[2]['email'] &&
+        _passwordController.text == users[2]['senha']) {
+      return 3;
+    } else {
+      return -1;
+    }
+  }
+
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
 
@@ -99,7 +120,22 @@ class _LoginState extends State<Login> {
                 const SizedBox(height: 40),
                 FilledButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/home');
+                    int value = testLogin();
+
+                    if (value != -1) {
+                      Navigator.pushNamed(
+                        context,
+                        '/home',
+                        arguments: value,
+                      );
+                    } else {
+                      showDialog(
+                          context: context,
+                          builder: (context) => const AlertDialog(
+                                title: Text("Erro de Login"),
+                                content: Text("Email ou senha inválidos, tente novamente"),
+                              ));
+                    }
                   },
                   style: FilledButton.styleFrom(
                       backgroundColor: primaryColor,

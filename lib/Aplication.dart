@@ -15,6 +15,8 @@ class Aplication extends StatefulWidget {
 }
 
 class _AplicationState extends State<Aplication> {
+
+  // int value = ModalRoute.of(context)?.settings.arguments as int;
   int index = 0;
 
   void _onTabSelected(int selectedIndex) {
