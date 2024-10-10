@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:projeto/Aplication.dart';
-import 'package:projeto/Pages/CreateEvent.dart';
 import 'package:projeto/Pages/EventData.dart';
 import 'package:projeto/Pages/Login.dart';
 import 'package:projeto/Pages/Register.dart';
@@ -21,6 +20,7 @@ void main (){
       // '/:user/events_user': (context) => const YourEvents(),
 
       // Fazer a parada do editar evento criado
+      // Fazer a parte da empresa solicitar
     },
   ));
 }
