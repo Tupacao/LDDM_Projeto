@@ -11,7 +11,6 @@ class EventCalendarPop extends StatelessWidget {
     required this.goTo
     });
 
-
   @override
   Widget build(BuildContext context) {
     return Stack(
