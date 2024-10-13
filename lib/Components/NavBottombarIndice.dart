@@ -3,8 +3,9 @@ import 'package:projeto/assets/Colors.dart';
 
 class NavBottomBarIndice extends StatefulWidget {
   final Function(int) onTabSelected; // Adiciona o callback para mudar o índice
-
-  const NavBottomBarIndice({required this.onTabSelected, super.key});
+  final int? value;
+  const NavBottomBarIndice(
+      {required this.onTabSelected, this.value, super.key});
 
   @override
   State<NavBottomBarIndice> createState() => _NavBottomBarIndiceState();
@@ -40,44 +41,46 @@ class _NavBottomBarIndiceState extends State<NavBottomBarIndice> {
                   ),
                 ),
               ),
-              GestureDetector(
-                onTap: () {
-                  widget
-                      .onTabSelected(4); // Atualiza o índice para "CreateEvent"
-                },
-                child: Container(
-                  width: 60,
-                  height: 60,
-                  decoration: const BoxDecoration(
-                    color: secondaryColor,
-                    shape: BoxShape.circle,
-                  ),
-                  child: const Icon(
-                    Icons.add,
-                    color: textColor,
-                    size: 40,
-                  ),
-                ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  widget
-                      .onTabSelected(5); // Atualiza o índice para "YourEvents"
-                },
-                child: Container(
-                  width: 60,
-                  height: 60,
-                  decoration: const BoxDecoration(
-                    color: secondaryColor,
-                    shape: BoxShape.circle,
-                  ),
-                  child: const Icon(
-                    Icons.edit,
-                    color: textColor,
-                    size: 40,
+              if (widget.value == 2 || widget.value == 3)
+                GestureDetector(
+                  onTap: () {
+                    widget.onTabSelected(
+                        4); // Atualiza o índice para "CreateEvent"
+                  },
+                  child: Container(
+                    width: 60,
+                    height: 60,
+                    decoration: const BoxDecoration(
+                      color: secondaryColor,
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(
+                      Icons.add,
+                      color: textColor,
+                      size: 40,
+                    ),
                   ),
                 ),
-              ),
+              if (widget.value == 2 || widget.value == 3)
+                GestureDetector(
+                  onTap: () {
+                    widget.onTabSelected(
+                        5); // Atualiza o índice para "YourEvents"
+                  },
+                  child: Container(
+                    width: 60,
+                    height: 60,
+                    decoration: const BoxDecoration(
+                      color: secondaryColor,
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(
+                      Icons.edit,
+                      color: textColor,
+                      size: 40,
+                    ),
+                  ),
+                ),
               GestureDetector(
                 onTap: () {
                   widget.onTabSelected(1); // Atualiza o índice para "User"
@@ -98,58 +101,24 @@ class _NavBottomBarIndiceState extends State<NavBottomBarIndice> {
               ),
             ],
           ),
-          // Transform.translate(
-          //   offset: const Offset(0, -50),
-          //   child: Stack(
-          //     alignment: Alignment.center,
-          //     children: [
-          //       Container(
-          //         width: 80,
-          //         height: 80,
-          //         decoration: const BoxDecoration(
-          //           color: secondaryColor,
-          //           shape: BoxShape.circle,
-          //         ),
-          //       ),
-          //       GestureDetector(
-          //         onTap: () {
-          //           widget.onTabSelected(0); // Atualiza o índice para "Home"
-          //         },
-          //         child: Container(
-          //           width: 60,
-          //           height: 60,
-          //           decoration: const BoxDecoration(
-          //             color: primaryColor,
-          //             shape: BoxShape.circle,
-          //           ),
-          //           child: const Icon(
-          //             Icons.home,
-          //             color: secondaryColor,
-          //             size: 40,
-          //           ),
-          //         ),
-          //       ),
-          //     ],
-          //   ),
-          // ),
           Transform.translate(
             offset: const Offset(0, -50),
-            child: GestureDetector(
-              onTap: () {
-                widget.onTabSelected(0); // Atualiza o índice para "Home"
-              },
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  Container(
-                    width: 80,
-                    height: 80,
-                    decoration: const BoxDecoration(
-                      color: secondaryColor,
-                      shape: BoxShape.circle,
-                    ),
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Container(
+                  width: 80,
+                  height: 80,
+                  decoration: const BoxDecoration(
+                    color: secondaryColor,
+                    shape: BoxShape.circle,
                   ),
-                  Container(
+                ),
+                GestureDetector(
+                  onTap: () {
+                    widget.onTabSelected(0);
+                  },
+                  child: Container(
                     width: 60,
                     height: 60,
                     decoration: const BoxDecoration(
@@ -162,10 +131,45 @@ class _NavBottomBarIndiceState extends State<NavBottomBarIndice> {
                       size: 40,
                     ),
                   ),
-                ],
-              ),
+                )
+              ],
             ),
           ),
+
+          // Transform.translate(
+          //   offset: const Offset(0, -50),
+          //   child: GestureDetector(
+          //     onTap: () {
+          //       widget.onTabSelected(0); // Atualiza o índice para "Home"
+          //     },
+          //     child: Stack(
+          //       alignment: Alignment.center,
+          //       children: [
+          //         Container(
+          //           width: 80,
+          //           height: 80,
+          //           decoration: const BoxDecoration(
+          //             color: secondaryColor,
+          //             shape: BoxShape.circle,
+          //           ),
+          //         ),
+          //         Container(
+          //           width: 60,
+          //           height: 60,
+          //           decoration: const BoxDecoration(
+          //             color: primaryColor,
+          //             shape: BoxShape.circle,
+          //           ),
+          //           child: const Icon(
+          //             Icons.home,
+          //             color: secondaryColor,
+          //             size: 40,
+          //           ),
+          //         ),
+          //       ],
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );

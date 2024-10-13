@@ -14,10 +14,13 @@ void main (){
       '/register': (context) => const Register(),
       '/home': (context) => const Aplication(),
       '/event_data/:data': (context) => const EventData(),
+      // '/:user/create_event': (context) => const CreateEvent(),
       // '/user/:data': (context) => const User(),
       // '/:user/events_calendar/:data': (context) => const EventCalendar(),
-      // '/:user/create_event': (context) => const CreateEvent(),
       // '/:user/events_user': (context) => const YourEvents(),
+
+      // Fazer a parada do editar evento criado
+      // Fazer a parte da empresa solicitar
     },
   ));
 }

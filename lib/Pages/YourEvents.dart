@@ -26,18 +26,6 @@ class _YourEventsState extends State<YourEvents> {
               ),
             ),
           ),
-          Expanded(
-            child: ListView.builder(
-              padding: const EdgeInsets.symmetric(vertical: 10),
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return const Padding(
-                  padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                  child: EventCalendarPop(goTo: '/:user/create_event'),
-                );
-              },
-            ),
-          ),
           Row(mainAxisAlignment: MainAxisAlignment.end, children: [
             Padding(
               padding: const EdgeInsets.all(20),
@@ -60,7 +48,19 @@ class _YourEventsState extends State<YourEvents> {
                 ),
               ),
             )
-          ])
+          ]),
+          Expanded(
+            child: ListView.builder(
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              itemCount: 10,
+              itemBuilder: (context, index) {
+                return const Padding(
+                  padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                  child: EventCalendarPop(goTo: '/:user/create_event'),
+                );
+              },
+            ),
+          ),
         ],
       ),
       backgroundColor: secondaryColor,
