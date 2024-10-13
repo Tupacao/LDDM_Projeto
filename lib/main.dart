@@ -20,7 +20,6 @@ void main (){
       // '/:user/events_user': (context) => const YourEvents(),
 
       // Fazer a parada do editar evento criado
-      // Fazer a parte da empresa solicitar
     },
   ));
 }

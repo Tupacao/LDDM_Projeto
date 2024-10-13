@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:projeto/Components/NavBottombarIndice.dart';
+import 'package:projeto/Components/UserIcon.dart';
 import 'package:projeto/Pages/CreateEvent.dart';
 import 'package:projeto/Pages/Calendar.dart';
-import 'package:projeto/Pages/EventData.dart';
 import 'package:projeto/Pages/Home.dart';
+import 'package:projeto/Pages/LogEvents.dart';
 import 'package:projeto/Pages/YourEvents.dart';
 import 'package:projeto/assets/Colors.dart';
 import 'Pages/User.dart';
@@ -37,13 +38,19 @@ class _AplicationState extends State<Aplication> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: secondaryColor,
+      appBar: AppBar(
+        backgroundColor: secondaryColor,
+        automaticallyImplyLeading: false,
+        flexibleSpace: UserIcon(onTabSelected: _onTabSelected),
+        toolbarHeight: 90,
+      ),
       body: IndexedStack(
         index: index,
         children: [
           const Home(),
           const User(),
           const EventCalendar(),
-          const EventData(),
+          const LogEvents(),
           if (value == 2 || value == 3) const CreateEvent() else const SizedBox.shrink(),
           if (value == 2 || value == 3) const YourEvents() else const SizedBox.shrink(),
         ],

@@ -83,7 +83,7 @@ class _NavBottomBarIndiceState extends State<NavBottomBarIndice> {
                 ),
               GestureDetector(
                 onTap: () {
-                  widget.onTabSelected(1); // Atualiza o índice para "User"
+                  widget.onTabSelected(3); // Atualiza o índice para "Log"
                 },
                 child: Container(
                   width: 60,
@@ -93,12 +93,30 @@ class _NavBottomBarIndiceState extends State<NavBottomBarIndice> {
                     shape: BoxShape.circle,
                   ),
                   child: const Icon(
-                    Icons.account_circle,
+                    Icons.document_scanner,
                     color: textColor,
                     size: 40,
                   ),
                 ),
               ),
+              // GestureDetector(
+              //   onTap: () {
+              //     widget.onTabSelected(1); // Atualiza o índice para "User"
+              //   },
+              //   child: Container(
+              //     width: 60,
+              //     height: 60,
+              //     decoration: const BoxDecoration(
+              //       color: secondaryColor,
+              //       shape: BoxShape.circle,
+              //     ),
+              //     child: const Icon(
+              //       Icons.account_circle,
+              //       color: textColor,
+              //       size: 40,
+              //     ),
+              //   ),
+              // ),
             ],
           ),
           Transform.translate(
@@ -116,7 +134,7 @@ class _NavBottomBarIndiceState extends State<NavBottomBarIndice> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    widget.onTabSelected(0);
+                    widget.onTabSelected(0); // indice da home
                   },
                   child: Container(
                     width: 60,
@@ -135,41 +153,6 @@ class _NavBottomBarIndiceState extends State<NavBottomBarIndice> {
               ],
             ),
           ),
-
-          // Transform.translate(
-          //   offset: const Offset(0, -50),
-          //   child: GestureDetector(
-          //     onTap: () {
-          //       widget.onTabSelected(0); // Atualiza o índice para "Home"
-          //     },
-          //     child: Stack(
-          //       alignment: Alignment.center,
-          //       children: [
-          //         Container(
-          //           width: 80,
-          //           height: 80,
-          //           decoration: const BoxDecoration(
-          //             color: secondaryColor,
-          //             shape: BoxShape.circle,
-          //           ),
-          //         ),
-          //         Container(
-          //           width: 60,
-          //           height: 60,
-          //           decoration: const BoxDecoration(
-          //             color: primaryColor,
-          //             shape: BoxShape.circle,
-          //           ),
-          //           child: const Icon(
-          //             Icons.home,
-          //             color: secondaryColor,
-          //             size: 40,
-          //           ),
-          //         ),
-          //       ],
-          //     ),
-          //   ),
-          // ),
         ],
       ),
     );
