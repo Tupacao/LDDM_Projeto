@@ -30,7 +30,51 @@ class _EventCalendarState extends State<EventCalendar> {
               padding: const EdgeInsets.all(20),
               child: FilledButton(
                 onPressed: () {
-                  // funcao para deletar
+                  showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: const Text("Deseja mesmo apagar?"),
+                      content: Row(
+                        children: [
+                          FilledButton(
+                            onPressed: () {},
+                            style: FilledButton.styleFrom(
+                                backgroundColor: accentColor,
+                                minimumSize: const Size(150, 60),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                )),
+                            child: const Text(
+                              "Sim",
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: secondaryColor,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 20),
+                          FilledButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            style: FilledButton.styleFrom(
+                                backgroundColor: accentColor,
+                                minimumSize: const Size(150, 60),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                )),
+                            child: const Text(
+                              "Não",
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: secondaryColor,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
                 },
                 style: FilledButton.styleFrom(
                     backgroundColor: accentColor,

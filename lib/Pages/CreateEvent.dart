@@ -168,7 +168,8 @@ class _CreateEventState extends State<CreateEvent> {
                   ),
                 ),
               ],
-            )
+            ),
+            const SizedBox(height: 50),
           ],
         ),
       ),
