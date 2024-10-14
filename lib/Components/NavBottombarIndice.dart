@@ -45,7 +45,7 @@ class _NavBottomBarIndiceState extends State<NavBottomBarIndice> {
                 GestureDetector(
                   onTap: () {
                     widget.onTabSelected(
-                        4); // Atualiza o índice para "CreateEvent"
+                        3); // Atualiza o índice para "CreateEvent"
                   },
                   child: Container(
                     width: 60,
@@ -65,7 +65,7 @@ class _NavBottomBarIndiceState extends State<NavBottomBarIndice> {
                 GestureDetector(
                   onTap: () {
                     widget.onTabSelected(
-                        5); // Atualiza o índice para "YourEvents"
+                        4); // Atualiza o índice para "YourEvents"
                   },
                   child: Container(
                     width: 60,
@@ -81,27 +81,9 @@ class _NavBottomBarIndiceState extends State<NavBottomBarIndice> {
                     ),
                   ),
                 ),
-              GestureDetector(
-                onTap: () {
-                  widget.onTabSelected(3); // Atualiza o índice para "Log"
-                },
-                child: Container(
-                  width: 60,
-                  height: 60,
-                  decoration: const BoxDecoration(
-                    color: secondaryColor,
-                    shape: BoxShape.circle,
-                  ),
-                  child: const Icon(
-                    Icons.document_scanner,
-                    color: textColor,
-                    size: 40,
-                  ),
-                ),
-              ),
               // GestureDetector(
               //   onTap: () {
-              //     widget.onTabSelected(1); // Atualiza o índice para "User"
+              //     widget.onTabSelected(3); // Atualiza o índice para "Log"
               //   },
               //   child: Container(
               //     width: 60,
@@ -111,12 +93,30 @@ class _NavBottomBarIndiceState extends State<NavBottomBarIndice> {
               //       shape: BoxShape.circle,
               //     ),
               //     child: const Icon(
-              //       Icons.account_circle,
+              //       Icons.document_scanner,
               //       color: textColor,
               //       size: 40,
               //     ),
               //   ),
               // ),
+              GestureDetector(
+                onTap: () {
+                  widget.onTabSelected(1); // Atualiza o índice para "User"
+                },
+                child: Container(
+                  width: 60,
+                  height: 60,
+                  decoration: const BoxDecoration(
+                    color: secondaryColor,
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(
+                    Icons.account_circle,
+                    color: textColor,
+                    size: 40,
+                  ),
+                ),
+              ),
             ],
           ),
           Transform.translate(
