@@ -38,19 +38,13 @@ class _AplicationState extends State<Aplication> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: secondaryColor,
-      appBar: AppBar(
-        backgroundColor: secondaryColor,
-        automaticallyImplyLeading: false,
-        flexibleSpace: UserIcon(onTabSelected: _onTabSelected),
-        toolbarHeight: 90,
-      ),
       body: IndexedStack(
         index: index,
         children: [
           const Home(),
           const User(),
           const EventCalendar(),
-          const LogEvents(),
+          // const LogEvents(),
           if (value == 2 || value == 3) const CreateEvent() else const SizedBox.shrink(),
           if (value == 2 || value == 3) const YourEvents() else const SizedBox.shrink(),
         ],

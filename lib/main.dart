@@ -3,7 +3,6 @@ import 'package:projeto/Aplication.dart';
 import 'package:projeto/Pages/EventData.dart';
 import 'package:projeto/Pages/Login.dart';
 import 'package:projeto/Pages/Register.dart';
-
 void main (){
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
