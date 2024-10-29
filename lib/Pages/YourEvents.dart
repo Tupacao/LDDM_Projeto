@@ -98,7 +98,7 @@ class _YourEventsState extends State<YourEvents> {
               itemBuilder: (context, index) {
                 return const Padding(
                   padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                  child: CalendarPop(goTo: '/:user/create_event'),
+                  child: CalendarPop(goTo: '/:user/create_event', past: false,),
                 );
               },
             ),

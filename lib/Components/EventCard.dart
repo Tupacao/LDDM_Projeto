@@ -3,8 +3,9 @@ import 'package:projeto/assets/Colors.dart';
 
 class EventCard extends StatelessWidget {
   final String goTo;
+  final bool past;
 
-  const EventCard({super.key, required this.goTo});
+  const EventCard({super.key, required this.goTo, required this.past});
 
   @override
   Widget build(BuildContext context) {
@@ -23,16 +24,23 @@ class EventCard extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                const Column(
+                Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       "Nome do Evento",
-                      style: TextStyle(fontSize: 30),
+                      style: TextStyle(
+                        fontSize: 30,
+                        color: past ? Colors.red : Colors.black,
+                      ),
                     ),
-                    Text("00/00/0000",
-                    style: TextStyle(fontSize: 17),
+                    Text(
+                      "00/00/0000",
+                      style: TextStyle(
+                        fontSize: 17,
+                        color: past ? Colors.red : Colors.black,
+                      ),
                     ),
                   ],
                 ),

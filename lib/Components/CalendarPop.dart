@@ -4,8 +4,9 @@ import 'package:projeto/assets/Colors.dart';
 
 class CalendarPop extends StatefulWidget {
   final String goTo;
+  final bool past;
 
-  const CalendarPop({super.key, required this.goTo});
+  const CalendarPop({super.key, required this.goTo, required this.past});
 
   @override
   State<CalendarPop> createState() => tCalendarPopState();
@@ -18,7 +19,7 @@ class tCalendarPopState extends State<CalendarPop> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        EventCard(goTo: widget.goTo),
+        EventCard(goTo: widget.goTo, past: widget.past),
         Transform.translate(
           offset: const Offset(400, -15),
           child: GestureDetector(

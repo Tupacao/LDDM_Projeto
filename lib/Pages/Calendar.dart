@@ -133,7 +133,7 @@ class _CalendarState extends State<Calendar> {
                   itemBuilder: (context, index) {
                     return const Padding(
                       padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
-                      child: CalendarPop(goTo: "/event_data/:data"),
+                      child: CalendarPop(goTo: "/event_data/:student", past: false),
                     );
                   },
                 ),
@@ -159,7 +159,7 @@ class _CalendarState extends State<Calendar> {
                   itemBuilder: (context, index) {
                     return const Padding(
                       padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
-                      child: CalendarPop(goTo: "/event_data/:data"),
+                      child: CalendarPop(goTo: "/event_data/:data", past: true,),
                     );
                   },
                 ),

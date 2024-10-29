@@ -32,7 +32,7 @@ class _LogEventsState extends State<LogEvents> {
               itemBuilder: (context, index) {
                 return const Padding(
                   padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
-                  child: EventCard(goTo: '/event_data/:data'),
+                  child: EventCard(goTo: '/event_data/:data', past: true,),
                 );
               },
             ),
