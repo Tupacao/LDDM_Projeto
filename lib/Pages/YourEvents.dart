@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projeto/assets/Colors.dart';
 
-import '../Components/EventCalendarPop.dart';
+import '../Components/CalendarPop.dart';
 
 class YourEvents extends StatefulWidget {
   const YourEvents({super.key});
@@ -98,7 +98,7 @@ class _YourEventsState extends State<YourEvents> {
               itemBuilder: (context, index) {
                 return const Padding(
                   padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                  child: EventCalendarPop(goTo: '/:user/create_event'),
+                  child: CalendarPop(goTo: '/:user/create_event'),
                 );
               },
             ),

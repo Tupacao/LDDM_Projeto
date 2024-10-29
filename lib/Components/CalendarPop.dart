@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:projeto/Components/EventCard.dart';
 import 'package:projeto/assets/Colors.dart';
 
-class EventCalendarPop extends StatefulWidget {
+class CalendarPop extends StatefulWidget {
   final String goTo;
 
-  const EventCalendarPop({super.key, required this.goTo});
+  const CalendarPop({super.key, required this.goTo});
 
   @override
-  State<EventCalendarPop> createState() => _EventCalendarPopState();
+  State<CalendarPop> createState() => tCalendarPopState();
 }
 
-class _EventCalendarPopState extends State<EventCalendarPop> {
+class tCalendarPopState extends State<CalendarPop> {
   bool isChecked = false; // Variável para armazenar o estado do checkbox
 
   @override
