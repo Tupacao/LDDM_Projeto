@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto/Aplication.dart';
+import 'package:projeto/Pages/Enterprise/EventDataEnterprise.dart';
 import 'package:projeto/Pages/EventData.dart';
 import 'package:projeto/Pages/Login.dart';
 import 'package:projeto/Pages/Register.dart';
@@ -16,6 +17,7 @@ void main (){
       '/home': (context) => const Aplication(),
       '/event_data/:data': (context) => const EventData(),
       '/event_data/:student': (context) => const EventDataStudent(),
+      '/event_data/:enterprise': (context) => const EventDataEnterprise(),
       // '/user/:data': (context) => const User(),
       // '/:user/events_calendar/:data': (context) => const EventCalendar(),
       // '/:user/events_user': (context) => const YourEvents(),

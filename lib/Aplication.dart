@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projeto/Components/NavBottombarIndice.dart';
 import 'package:projeto/Pages/CreateEvent.dart';
 import 'package:projeto/Pages/Calendar.dart';
+import 'package:projeto/Pages/Enterprise/EventEnterprise.dart';
 import 'package:projeto/Pages/Home.dart';
 import 'package:projeto/Pages/YourEvents.dart';
 import 'package:projeto/assets/Colors.dart';
@@ -41,16 +42,19 @@ class _AplicationState extends State<Aplication> {
         children: [
           const Home(),
           const User(),
-          const Calendar(),
-          // const LogEvents(),
+          if (value == 2 || value == 1)
+            const Calendar()
+          else
+            const SizedBox.shrink(),
           if (value == 2 || value == 3)
             const CreateEvent()
           else
             const SizedBox.shrink(),
-          if (value == 2 || value == 3)
+          if (value == 2)
             const YourEvents()
           else
             const SizedBox.shrink(),
+          if (value == 3) const EventEnterprise() else const SizedBox.shrink(),
         ],
       ),
       bottomNavigationBar: NavBottomBarIndice(

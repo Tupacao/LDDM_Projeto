@@ -22,25 +22,26 @@ class _NavBottomBarIndiceState extends State<NavBottomBarIndice> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              GestureDetector(
-                onTap: () {
-                  widget.onTabSelected(
-                      2); // Atualiza o índice para "EventCalendar"
-                },
-                child: Container(
-                  width: 60,
-                  height: 60,
-                  decoration: const BoxDecoration(
-                    color: secondaryColor,
-                    shape: BoxShape.circle,
-                  ),
-                  child: const Icon(
-                    Icons.layers,
-                    color: textColor,
-                    size: 40,
+              if (widget.value == 1 || widget.value == 2)
+                GestureDetector(
+                  onTap: () {
+                    widget.onTabSelected(
+                        2); // Atualiza o índice para "EventCalendar"
+                  },
+                  child: Container(
+                    width: 60,
+                    height: 60,
+                    decoration: const BoxDecoration(
+                      color: secondaryColor,
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(
+                      Icons.layers,
+                      color: textColor,
+                      size: 40,
+                    ),
                   ),
                 ),
-              ),
               if (widget.value == 2 || widget.value == 3)
                 GestureDetector(
                   onTap: () {
@@ -61,11 +62,31 @@ class _NavBottomBarIndiceState extends State<NavBottomBarIndice> {
                     ),
                   ),
                 ),
-              if (widget.value == 2 || widget.value == 3)
+              if (widget.value == 2)
                 GestureDetector(
                   onTap: () {
                     widget.onTabSelected(
                         4); // Atualiza o índice para "YourEvents"
+                  },
+                  child: Container(
+                    width: 60,
+                    height: 60,
+                    decoration: const BoxDecoration(
+                      color: secondaryColor,
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(
+                      Icons.edit,
+                      color: textColor,
+                      size: 40,
+                    ),
+                  ),
+                ),
+              if (widget.value == 3)
+                GestureDetector(
+                  onTap: () {
+                    widget.onTabSelected(
+                        5); // Atualiza o índice para "YourEvents"
                   },
                   child: Container(
                     width: 60,
