@@ -9,6 +9,8 @@ class User extends StatefulWidget {
 }
 
 class _UserState extends State<User> {
+  bool varOpen = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,19 +64,37 @@ class _UserState extends State<User> {
               ],
             ),
             const SizedBox(height: 10),
-            const Column(
+            Column(
               children: [
-                SizedBox(
-                  width: 800,
-                  child: Text("Editar informações do Perfil:",
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: textColor,
-                        fontWeight: FontWeight.bold,
-                      )),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Flexible(
+                      child: Text(
+                        "Editar informações do Perfil:",
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: textColor,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          varOpen = !varOpen;
+                        });
+                      },
+                      child: const Icon(
+                        Icons.edit,
+                        size: 40,
+                        color: primaryColor,
+                      ),
+                    ),
+                  ],
                 ),
-                SizedBox(height: 10),
-                SizedBox(
+                const SizedBox(height: 10),
+                const SizedBox(
                   width: 800,
                   child: TextField(
                     controller: null,
@@ -199,9 +219,9 @@ class _UserState extends State<User> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       )),
-                  child: const Text(
-                    "Cancelar",
-                    style: TextStyle(
+                  child: Text(
+                    varOpen ? "Deletar" : "Cancelar",
+                    style: const TextStyle(
                       fontSize: 20,
                       color: secondaryColor,
                     ),

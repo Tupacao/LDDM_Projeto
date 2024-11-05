@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:projeto/Components/EventCalendarPop.dart';
+import 'package:projeto/Components/CalendarPop.dart';
 import 'package:projeto/assets/Colors.dart';
 
-class EventCalendar extends StatefulWidget {
-  const EventCalendar({super.key});
+class Calendar extends StatefulWidget {
+  const Calendar({super.key});
 
   @override
-  State<EventCalendar> createState() => _EventCalendarState();
+  State<Calendar> createState() => _CalendarState();
 }
 
-class _EventCalendarState extends State<EventCalendar> {
+class _CalendarState extends State<Calendar> {
+  bool varOpen = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,8 +28,31 @@ class _EventCalendarState extends State<EventCalendar> {
             ),
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              Row(
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      setState(() {
+                        varOpen = true;
+                      });
+                    },
+                    child: const Text("Seus Eventos"),
+                  ),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      setState(() {
+                        varOpen = false;
+                      });
+                    },
+                    child: const Text("Eventos Passados"),
+                  ),
+                ],
+              ),
               Padding(
                 padding: const EdgeInsets.all(20),
                 child: FilledButton(
@@ -95,49 +120,43 @@ class _EventCalendarState extends State<EventCalendar> {
               )
             ],
           ),
-          // Limitando o tamanho da primeira lista
-          Flexible(
-            flex: 2, // 2 partes do espaço disponível
-            child: Container(
-              constraints: const BoxConstraints(maxHeight: 300), // Limita a altura máxima
-              child: ListView.builder(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return const Padding(
-                    padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                    child: EventCalendarPop(goTo: "/event_data/:data"),
-                  );
-                },
+          const SizedBox(height: 10),
+          if (varOpen)
+            Flexible(
+              flex: 2, // 2 partes do espaço disponível
+              child: Container(
+                constraints: const BoxConstraints(
+                    maxHeight: 800), // Limita a altura máxima
+                child: ListView.builder(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  itemCount: 10,
+                  itemBuilder: (context, index) {
+                    return const Padding(
+                      padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
+                      child: CalendarPop(goTo: "/event_data/:student", past: false),
+                    ); 
+                  },
+                ),
               ),
             ),
-          ),
-          const SizedBox(height: 10),
-          const Text(
-            "Seus Eventos passados",
-            style: TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 10),
-          // Limitando o tamanho da segunda lista
-          Flexible(
-            flex: 1, // 1 parte do espaço disponível
-            child: Container(
-              constraints: const BoxConstraints(maxHeight: 300), // Limita a altura máxima
-              child: ListView.builder(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return const Padding(
-                    padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
-                    child: EventCalendarPop(goTo: "/event_data/:data"),
-                  );
-                },
+          if (!varOpen)
+            Flexible(
+              flex: 1, // 1 parte do espaço disponível
+              child: Container(
+                constraints: const BoxConstraints(
+                    maxHeight: 800), // Limita a altura máxima
+                child: ListView.builder(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  itemCount: 10,
+                  itemBuilder: (context, index) {
+                    return const Padding(
+                      padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
+                      child: CalendarPop(goTo: "/event_data/:student", past: true,),
+                    );
+                  },
+                ),
               ),
             ),
-          ),
         ],
       ),
     );

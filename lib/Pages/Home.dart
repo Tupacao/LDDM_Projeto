@@ -42,32 +42,59 @@ class _HomeState extends State<Home> {
                   SizedBox(
                       width: 800,
                       child: Align(
-                        alignment: Alignment
-                            .centerLeft, // Alinha o Container ao início (start)
-                        child: Container(
-                          width: 100,
-                          padding: const EdgeInsets.all(10), // Adiciona padding
-                          decoration: BoxDecoration(
-                            color: accentColor,
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: const Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Filtro",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
+                        alignment: Alignment.centerLeft,
+                        child: GestureDetector(
+                            onTap: () {
+                              showDialog(
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                  title:
+                                      const Text("Selecione os seus filtros"),
+                                  content: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      const Text("Filtro 1 "),
+                                      const Text("Filtro 1"),
+                                      const Text("Filtro 1"),
+                                      const Text("Filtro 1"),
+                                      const Text("Filtro 1"),
+                                      FilledButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: const Text("Aplicar Filtros"),
+                                      ),
+                                    ],
+                                  ),
                                 ),
+                              );
+                            },
+                            child: Container(
+                              width: 100,
+                              padding: const EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                color: accentColor,
+                                borderRadius: BorderRadius.circular(8),
                               ),
-                              SizedBox(
-                                width: 8, // Espaço entre o texto e o ícone
+                              child: const Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Filtro",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 8,
+                                  ),
+                                  Icon(Icons.add),
+                                ],
                               ),
-                              Icon(Icons.add),
-                            ],
-                          ),
-                        ),
-                      )),
+                            )),
+                      ))
                 ],
               )),
           Expanded(
@@ -77,7 +104,7 @@ class _HomeState extends State<Home> {
               itemBuilder: (context, index) {
                 return const Padding(
                   padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
-                  child: EventCard(goTo: '/event_data/:data'),
+                  child: EventCard(goTo: '/event_data/:data', past: false),
                 );
               },
             ),
