@@ -84,35 +84,32 @@ class _EventDataStudentState extends State<EventDataStudent> {
                     borderRadius: BorderRadius.circular(10),
                     color: lightBlue,
                   ),
-                  child: Image.asset("lib/assets/images/PucEventos.png"),
+                  child: Image.asset("lib/assets/images/QrCode.png"),
                 ),
               )),
-          SizedBox(
-              width: 800,
-              child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-                Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: FilledButton(
-                    onPressed: () {
-                      Navigator.pushNamed(
-                          context, "/:user/events_calendar/:data");
-                    },
-                    style: FilledButton.styleFrom(
-                        backgroundColor: accentColor,
-                        minimumSize: const Size(100, 60),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        )),
-                    child: const Text(
-                      "Desinscrever",
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: textColor,
+            SizedBox(
+                width: 800,
+                child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+                  Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: FilledButton(
+                      onPressed: () {},
+                      style: FilledButton.styleFrom(
+                          backgroundColor: accentColor,
+                          minimumSize: const Size(100, 60),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          )),
+                      child: const Text(
+                        "Desinscrever",
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: textColor,
+                        ),
                       ),
                     ),
-                  ),
-                )
-              ])),
+                  )
+                ])),
         ])),
       ),
       backgroundColor: secondaryColor,

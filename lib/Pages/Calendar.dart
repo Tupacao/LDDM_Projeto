@@ -134,19 +134,11 @@ class _CalendarState extends State<Calendar> {
                     return const Padding(
                       padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
                       child: CalendarPop(goTo: "/event_data/:student", past: false),
-                    );
+                    ); 
                   },
                 ),
               ),
             ),
-          // const Text(
-          //   "Seus Eventos passados",
-          //   style: TextStyle(
-          //     fontSize: 30,
-          //     fontWeight: FontWeight.bold,
-          //   ),
-          // ),
-          // Limitando o tamanho da segunda lista
           if (!varOpen)
             Flexible(
               flex: 1, // 1 parte do espaço disponível
@@ -159,7 +151,7 @@ class _CalendarState extends State<Calendar> {
                   itemBuilder: (context, index) {
                     return const Padding(
                       padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
-                      child: CalendarPop(goTo: "/event_data/:data", past: true,),
+                      child: CalendarPop(goTo: "/event_data/:student", past: true,),
                     );
                   },
                 ),

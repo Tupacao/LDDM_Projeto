@@ -4,6 +4,7 @@ import 'package:projeto/Pages/EventData.dart';
 import 'package:projeto/Pages/Login.dart';
 import 'package:projeto/Pages/Register.dart';
 import 'package:projeto/Pages/Student/EventDataStudent.dart';
+
 void main (){
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
