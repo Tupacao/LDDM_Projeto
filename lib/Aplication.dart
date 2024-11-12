@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:projeto/Components/NavBottombarIndice.dart';
 import 'package:projeto/Pages/CreateEvent.dart';
 import 'package:projeto/Pages/Calendar.dart';
-import 'package:projeto/Pages/Enterprise/EventEnterprise.dart';
 import 'package:projeto/Pages/Enterprise/HomeEnterprise.dart';
 import 'package:projeto/Pages/Home.dart';
 import 'package:projeto/Pages/YourEvents.dart';

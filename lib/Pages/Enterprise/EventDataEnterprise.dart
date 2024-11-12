@@ -95,7 +95,7 @@ class _EventDataEnterpriseState extends State<EventDataEnterprise> {
                   children: [
                     FilledButton(
                       onPressed: () {
-                        // funcao para salvar
+                        // funcao para editar
                       },
                       style: FilledButton.styleFrom(
                           backgroundColor: primaryColor,
@@ -114,7 +114,51 @@ class _EventDataEnterpriseState extends State<EventDataEnterprise> {
                     const SizedBox(width: 20),
                     FilledButton(
                       onPressed: () {
-                        // funcao para deletar
+                        showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            title: const Text("Deseja mesmo apagar?"),
+                            content: Row(
+                              children: [
+                                FilledButton(
+                                  onPressed: () {},
+                                  style: FilledButton.styleFrom(
+                                      backgroundColor: accentColor,
+                                      minimumSize: const Size(150, 60),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                      )),
+                                  child: const Text(
+                                    "Sim",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      color: secondaryColor,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 20),
+                                FilledButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  style: FilledButton.styleFrom(
+                                      backgroundColor: accentColor,
+                                      minimumSize: const Size(150, 60),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                      )),
+                                  child: const Text(
+                                    "Não",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      color: secondaryColor,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
                       },
                       style: FilledButton.styleFrom(
                           backgroundColor: accentColor,

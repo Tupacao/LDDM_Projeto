@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:projeto/Components/CalendarPop.dart';
 import 'package:projeto/Components/EventCard.dart';
 import 'package:projeto/assets/Colors.dart';
 
