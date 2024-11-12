@@ -19,6 +19,18 @@ class _UserState extends State<User> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const Align(
+              alignment: Alignment.topRight,
+              child: SizedBox(
+                width: 100,
+                height: 100,
+                child: Icon(
+                  Icons.exit_to_app,
+                  color: primaryColor,
+                  size: 80,
+                ),
+              ),
+            ),
             Row(
               children: [
                 Container(

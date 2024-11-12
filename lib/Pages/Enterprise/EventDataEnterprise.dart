@@ -67,32 +67,72 @@ class _EventDataEnterpriseState extends State<EventDataEnterprise> {
                     'Lorem Impsum is simply Lorem Impsum is simply Lorem Impsum is simply Lorem Impsum is simply'),
               ),
               const SizedBox(height: 40),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "Pessoas inscritas: ($tam)",
-                  style: const TextStyle(fontSize: 18),
+              Text(
+                "Pessoas inscritas: ($tam)",
+                style: const TextStyle(fontSize: 18),
+                textAlign: TextAlign.center,
+              ),
+              Expanded(
+                child: ListView.builder(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  itemCount: tam,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                      child: Text(
+                        "Aluno ${index + 1} - Matrícula $index${index + 1}${index + 2}${index + 3}",
+                        textAlign: TextAlign.center,
+                      ),
+                    );
+                  },
                 ),
               ),
-              // Centraliza o ListView
-              Expanded(
-                child: Center(
-                  child: SizedBox(
-                    width: 300, // Define a largura para o ListView
-                    child: ListView.builder(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      itemCount: tam,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-                          child: Text(
-                              "Aluno ${index + 1} - Matrícula $index${index + 1}${index + 2}${index + 3}"),
-                        );
+              const SizedBox(width: 60),
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    FilledButton(
+                      onPressed: () {
+                        // funcao para salvar
                       },
+                      style: FilledButton.styleFrom(
+                          backgroundColor: primaryColor,
+                          minimumSize: const Size(100, 60),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          )),
+                      child: const Text(
+                        "Editar",
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: secondaryColor,
+                        ),
+                      ),
                     ),
-                  ),
+                    const SizedBox(width: 20),
+                    FilledButton(
+                      onPressed: () {
+                        // funcao para deletar
+                      },
+                      style: FilledButton.styleFrom(
+                          backgroundColor: accentColor,
+                          minimumSize: const Size(100, 60),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          )),
+                      child: const Text(
+                        "Deletar",
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: secondaryColor,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              )
+              ),
             ],
           ),
         ),

@@ -21,8 +21,6 @@ void main (){
       // '/user/:data': (context) => const User(),
       // '/:user/events_calendar/:data': (context) => const EventCalendar(),
       // '/:user/events_user': (context) => const YourEvents(),
-
-      // Fazer a parada do editar evento criado
     },
   ));
 }

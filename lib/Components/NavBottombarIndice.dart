@@ -82,44 +82,6 @@ class _NavBottomBarIndiceState extends State<NavBottomBarIndice> {
                     ),
                   ),
                 ),
-              if (widget.value == 3)
-                GestureDetector(
-                  onTap: () {
-                    widget.onTabSelected(
-                        5); // Atualiza o índice para "YourEvents"
-                  },
-                  child: Container(
-                    width: 60,
-                    height: 60,
-                    decoration: const BoxDecoration(
-                      color: secondaryColor,
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Icon(
-                      Icons.edit,
-                      color: textColor,
-                      size: 40,
-                    ),
-                  ),
-                ),
-              // GestureDetector(
-              //   onTap: () {
-              //     widget.onTabSelected(3); // Atualiza o índice para "Log"
-              //   },
-              //   child: Container(
-              //     width: 60,
-              //     height: 60,
-              //     decoration: const BoxDecoration(
-              //       color: secondaryColor,
-              //       shape: BoxShape.circle,
-              //     ),
-              //     child: const Icon(
-              //       Icons.document_scanner,
-              //       color: textColor,
-              //       size: 40,
-              //     ),
-              //   ),
-              // ),
               GestureDetector(
                 onTap: () {
                   widget.onTabSelected(1); // Atualiza o índice para "User"

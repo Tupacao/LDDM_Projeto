@@ -9,10 +9,10 @@ class CalendarPop extends StatefulWidget {
   const CalendarPop({super.key, required this.goTo, required this.past});
 
   @override
-  State<CalendarPop> createState() => tCalendarPopState();
+  State<CalendarPop> createState() => CalendarPopState();
 }
 
-class tCalendarPopState extends State<CalendarPop> {
+class CalendarPopState extends State<CalendarPop> {
   bool isChecked = false; // Variável para armazenar o estado do checkbox
 
   @override
