@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:projeto/Components/EventCard.dart';
 import 'package:projeto/assets/Colors.dart';
 
-import '../Components/CalendarPop.dart';
-
 class YourEvents extends StatefulWidget {
   const YourEvents({super.key});
 

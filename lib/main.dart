@@ -20,9 +20,6 @@ void main (){
       '/event_data/:student': (context) => const EventDataStudent(),
       '/event_data/:enterprise': (context) => const EventDataEnterprise(),
       '/event_data/:teacher': (context) => const EventDataTeacher(),
-      // '/user/:data': (context) => const User(),
-      // '/:user/events_calendar/:data': (context) => const EventCalendar(),
-      // '/:user/events_user': (context) => const YourEvents(),
     },
   ));
 }
