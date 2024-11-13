@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:projeto/Aplication.dart';
 import 'package:projeto/Pages/Enterprise/EventDataEnterprise.dart';
 import 'package:projeto/Pages/EventData.dart';
-import 'package:projeto/Pages/Login.dart';
-import 'package:projeto/Pages/Register.dart';
+import 'package:projeto/Pages/Login/Login.dart';
+import 'package:projeto/Pages/Login/Register.dart';
 import 'package:projeto/Pages/Student/EventDataStudent.dart';
 import 'package:projeto/Pages/Teacher/EventDataTeacher.dart';
 
@@ -20,9 +20,6 @@ void main (){
       '/event_data/:student': (context) => const EventDataStudent(),
       '/event_data/:enterprise': (context) => const EventDataEnterprise(),
       '/event_data/:teacher': (context) => const EventDataTeacher(),
-      // '/user/:data': (context) => const User(),
-      // '/:user/events_calendar/:data': (context) => const EventCalendar(),
-      // '/:user/events_user': (context) => const YourEvents(),
     },
   ));
 }

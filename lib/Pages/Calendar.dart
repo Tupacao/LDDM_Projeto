@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projeto/Components/CalendarPop.dart';
+import 'package:projeto/Components/EventCard.dart';
 import 'package:projeto/assets/Colors.dart';
 
 class Calendar extends StatefulWidget {
@@ -28,96 +28,27 @@ class _CalendarState extends State<Calendar> {
             ),
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Row(
-                children: [
-                  TextButton(
-                    onPressed: () {
-                      setState(() {
-                        varOpen = true;
-                      });
-                    },
-                    child: const Text("Seus Eventos"),
-                  ),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      setState(() {
-                        varOpen = false;
-                      });
-                    },
-                    child: const Text("Eventos Passados"),
-                  ),
-                ],
+              TextButton(
+                onPressed: () {
+                  setState(() {
+                    varOpen = true;
+                  });
+                },
+                child: const Text("Seus Eventos"),
               ),
-              Padding(
-                padding: const EdgeInsets.all(20),
-                child: FilledButton(
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (context) => AlertDialog(
-                        title: const Text("Deseja mesmo apagar?"),
-                        content: Row(
-                          children: [
-                            FilledButton(
-                              onPressed: () {},
-                              style: FilledButton.styleFrom(
-                                  backgroundColor: accentColor,
-                                  minimumSize: const Size(150, 60),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8),
-                                  )),
-                              child: const Text(
-                                "Sim",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: secondaryColor,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 20),
-                            FilledButton(
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                              style: FilledButton.styleFrom(
-                                  backgroundColor: accentColor,
-                                  minimumSize: const Size(150, 60),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8),
-                                  )),
-                              child: const Text(
-                                "Não",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: secondaryColor,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                  style: FilledButton.styleFrom(
-                      backgroundColor: accentColor,
-                      minimumSize: const Size(150, 60),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      )),
-                  child: const Text(
-                    "Apagar Evento",
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: secondaryColor,
-                    ),
-                  ),
-                ),
-              )
+              const SizedBox(
+                width: 20,
+              ),
+              TextButton(
+                onPressed: () {
+                  setState(() {
+                    varOpen = false;
+                  });
+                },
+                child: const Text("Eventos Passados"),
+              ),
             ],
           ),
           const SizedBox(height: 10),
@@ -133,8 +64,9 @@ class _CalendarState extends State<Calendar> {
                   itemBuilder: (context, index) {
                     return const Padding(
                       padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
-                      child: CalendarPop(goTo: "/event_data/:student", past: false),
-                    ); 
+                      child: EventCard(
+                          goTo: "/event_data/:student", past: false),
+                    );
                   },
                 ),
               ),
@@ -151,7 +83,10 @@ class _CalendarState extends State<Calendar> {
                   itemBuilder: (context, index) {
                     return const Padding(
                       padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
-                      child: CalendarPop(goTo: "/event_data/:student", past: true,),
+                      child: EventCard(
+                        goTo: "/event_data/:student",
+                        past: true,
+                      ),
                     );
                   },
                 ),
