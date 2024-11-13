@@ -5,6 +5,7 @@ import 'package:projeto/Pages/EventData.dart';
 import 'package:projeto/Pages/Login.dart';
 import 'package:projeto/Pages/Register.dart';
 import 'package:projeto/Pages/Student/EventDataStudent.dart';
+import 'package:projeto/Pages/Teacher/EventDataTeacher.dart';
 
 void main (){
   runApp(MaterialApp(
@@ -18,6 +19,7 @@ void main (){
       '/event_data/:data': (context) => const EventData(),
       '/event_data/:student': (context) => const EventDataStudent(),
       '/event_data/:enterprise': (context) => const EventDataEnterprise(),
+      '/event_data/:teacher': (context) => const EventDataTeacher(),
       // '/user/:data': (context) => const User(),
       // '/:user/events_calendar/:data': (context) => const EventCalendar(),
       // '/:user/events_user': (context) => const YourEvents(),

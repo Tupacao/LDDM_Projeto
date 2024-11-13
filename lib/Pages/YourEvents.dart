@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto/Components/EventCard.dart';
 import 'package:projeto/assets/Colors.dart';
 
 import '../Components/CalendarPop.dart';
@@ -19,7 +20,7 @@ class _YourEventsState extends State<YourEvents> {
           const Align(
             alignment: Alignment.center,
             child: Text(
-              "Eventos Criados",
+              "Seus Eventos Criados",
               style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
@@ -98,7 +99,7 @@ class _YourEventsState extends State<YourEvents> {
               itemBuilder: (context, index) {
                 return const Padding(
                   padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                  child: CalendarPop(goTo: '/:user/create_event', past: false,),
+                  child: EventCard(goTo: '/event_data/:enterprise', past: false),
                 );
               },
             ),
