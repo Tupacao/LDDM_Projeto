@@ -3,9 +3,9 @@ import 'package:projeto/Components/NavBottombarIndice.dart';
 import 'package:projeto/Pages/CreateEvent.dart';
 import 'package:projeto/Pages/Calendar.dart';
 import 'package:projeto/Pages/Enterprise/HomeEnterprise.dart';
-import 'package:projeto/Pages/Home.dart';
+import 'package:projeto/Pages/Student/Home.dart';
 import 'package:projeto/Pages/Teacher/HomeTeacher.dart';
-import 'package:projeto/Pages/YourEvents.dart';
+import 'package:projeto/Pages/Teacher/YourEvents.dart';
 import 'package:projeto/assets/Colors.dart';
 import 'Pages/User.dart';
 

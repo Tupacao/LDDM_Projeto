@@ -51,12 +51,15 @@ class _LoginState extends State<Login> {
                   height: 20,
                 ),
                 const SizedBox(
-                    height: 40,
-                    child: Text("Faça seu Login",
-                        style: TextStyle(
-                            fontSize: 20,
-                            color: textColor,
-                            fontWeight: FontWeight.bold))),
+                  height: 40,
+                  child: Text(
+                    "Faça seu Login",
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: textColor,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
                 Column(
                   children: [
                     const SizedBox(
