@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:projeto/assets/Colors.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:http/http.dart' as http;
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -11,30 +9,7 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  List<Map<String, String>> users = [
-    {'email': 'aluno@gmail.com', 'senha': 'ps1'},
-    {'email': 'professor@gmail.com', 'senha': 'ps2'},
-    {'email': 'empresa@gmail.com', 'senha': 'ps3'},
-    {'email': 'adm', 'senha': '123'}
-  ];
 
-  int testLogin() {
-    if (_emailController.text == users[0]['email'] &&
-        _passwordController.text == users[0]['senha']) {
-      return 1;
-    } else if (_emailController.text == users[1]['email'] &&
-        _passwordController.text == users[1]['senha']) {
-      return 2;
-    } else if (_emailController.text == users[2]['email'] &&
-        _passwordController.text == users[2]['senha']) {
-      return 3;
-    } else if (_emailController.text == users[3]['email'] &&
-        _passwordController.text == users[3]['senha']) {
-      return 3;
-    } else {
-      return -1;
-    }
-  }
 
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
@@ -130,7 +105,7 @@ class _LoginState extends State<Login> {
                   const SizedBox(height: 40),
                   FilledButton(
                     onPressed: () {
-                      int value = testLogin();
+                      int value = ;
 
                       if (value != -1) {
                         Navigator.pushNamed(
