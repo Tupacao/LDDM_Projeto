@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projeto/assets/Colors.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -43,138 +45,140 @@ class _LoginState extends State<Login> {
       body: Padding(
           padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
           child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset("lib/assets/images/PucEventos.png"),
-                const SizedBox(
-                  height: 20,
-                ),
-                const SizedBox(
-                  height: 40,
-                  child: Text(
-                    "Faça seu Login",
-                    style: TextStyle(
-                        fontSize: 20,
-                        color: textColor,
-                        fontWeight: FontWeight.bold),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset("lib/assets/images/PucEventos.png"),
+                  const SizedBox(
+                    height: 20,
                   ),
-                ),
-                Column(
-                  children: [
-                    const SizedBox(
-                      width: 600,
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Email",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: textColor,
-                            fontWeight: FontWeight.bold,
+                  const SizedBox(
+                    height: 40,
+                    child: Text(
+                      "Faça seu Login",
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: textColor,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Column(
+                    children: [
+                      const SizedBox(
+                        width: 600,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            "Email",
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: textColor,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      width: 600,
-                      child: TextField(
-                        controller: _emailController,
-                        keyboardType: TextInputType.emailAddress,
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                        ),
-                        style: const TextStyle(
-                          color: primaryColor,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                Column(
-                  children: [
-                    const SizedBox(
-                      width: 600,
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Senha",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: textColor,
-                            fontWeight: FontWeight.bold,
+                      SizedBox(
+                        width: 600,
+                        child: TextField(
+                          controller: _emailController,
+                          keyboardType: TextInputType.emailAddress,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                          ),
+                          style: const TextStyle(
+                            color: primaryColor,
                           ),
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      width: 600,
-                      child: TextField(
-                        controller: _passwordController,
-                        keyboardType: TextInputType.visiblePassword,
-                        obscureText: true,
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                        ),
-                        style: const TextStyle(
-                          color: primaryColor,
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  Column(
+                    children: [
+                      const SizedBox(
+                        width: 600,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            "Senha",
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: textColor,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 40),
-                FilledButton(
-                  onPressed: () {
-                    int value = testLogin();
+                      SizedBox(
+                        width: 600,
+                        child: TextField(
+                          controller: _passwordController,
+                          keyboardType: TextInputType.visiblePassword,
+                          obscureText: true,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                          ),
+                          style: const TextStyle(
+                            color: primaryColor,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 40),
+                  FilledButton(
+                    onPressed: () {
+                      int value = testLogin();
 
-                    if (value != -1) {
-                      Navigator.pushNamed(
-                        context,
-                        '/home',
-                        arguments: value,
-                      );
-                    } else {
-                      showDialog(
-                          context: context,
-                          builder: (context) => const AlertDialog(
-                                title: Text("Erro de Login"),
-                                content: Text(
-                                    "Email ou senha inválidos, tente novamente"),
-                              ));
-                    }
-                  },
-                  style: FilledButton.styleFrom(
-                      backgroundColor: primaryColor,
-                      minimumSize: const Size(200, 60),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      )),
-                  child: const Text(
-                    "Entrar",
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: secondaryColor,
-                      fontWeight: FontWeight.bold,
+                      if (value != -1) {
+                        Navigator.pushNamed(
+                          context,
+                          '/home',
+                          arguments: value,
+                        );
+                      } else {
+                        showDialog(
+                            context: context,
+                            builder: (context) => const AlertDialog(
+                                  title: Text("Erro de Login"),
+                                  content: Text(
+                                      "Email ou senha inválidos, tente novamente"),
+                                ));
+                      }
+                    },
+                    style: FilledButton.styleFrom(
+                        backgroundColor: primaryColor,
+                        minimumSize: const Size(200, 60),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        )),
+                    child: const Text(
+                      "Entrar",
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: secondaryColor,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(height: 10),
-                TextButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/register');
-                  },
-                  child: const Text(
-                    "Não tem uma conta? Criar uma",
-                    style: TextStyle(
-                      color: textColor,
-                      fontSize: 16,
-                      decoration: TextDecoration.underline,
+                  const SizedBox(height: 10),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/register');
+                    },
+                    child: const Text(
+                      "Não tem uma conta? Criar uma",
+                      style: TextStyle(
+                        color: textColor,
+                        fontSize: 16,
+                        decoration: TextDecoration.underline,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           )),
       backgroundColor: secondaryColor,
