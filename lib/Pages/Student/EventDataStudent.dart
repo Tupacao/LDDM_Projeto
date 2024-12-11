@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:projeto/Components/ErrorDialog.dart';
+import 'package:projeto/Req/EventReq.dart';
 import 'package:projeto/assets/Colors.dart';
 
 class EventDataStudent extends StatefulWidget {
@@ -87,29 +89,51 @@ class _EventDataStudentState extends State<EventDataStudent> {
                   child: Image.asset("lib/assets/images/QrCode.png"),
                 ),
               )),
-            SizedBox(
-                width: 800,
-                child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-                  Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: FilledButton(
-                      onPressed: () {},
-                      style: FilledButton.styleFrom(
-                          backgroundColor: accentColor,
-                          minimumSize: const Size(100, 60),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          )),
-                      child: const Text(
-                        "Desinscrever",
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: textColor,
-                        ),
+          SizedBox(
+              width: 800,
+              child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+                Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: FilledButton(
+                    onPressed: () async {
+                      if (await unsubscribeEvent('1')) {
+                        showDialog(
+                          context: context,
+                          builder: (builder) => Column(
+                            children: [
+                              const Text("Criado com sucesso"),
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: const Text("Ok"),
+                              ),
+                            ],
+                          ),
+                        );
+                      } else {
+                        ErrorDialog(
+                          erro: "Erro desiscrever",
+                          desc: "Tente mais tarde",
+                        );
+                      }
+                    },
+                    style: FilledButton.styleFrom(
+                        backgroundColor: accentColor,
+                        minimumSize: const Size(100, 60),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        )),
+                    child: const Text(
+                      "Desinscrever",
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: textColor,
                       ),
                     ),
-                  )
-                ])),
+                  ),
+                )
+              ])),
         ])),
       ),
       backgroundColor: secondaryColor,

@@ -1,15 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:projeto/Class/User.dart';
+import 'package:projeto/Components/ErrorDialog.dart';
+import 'package:projeto/Req/UserReq.dart';
 import 'package:projeto/assets/Colors.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class User extends StatefulWidget {
-  const User({super.key});
+class UserProfile extends StatefulWidget {
+  const UserProfile({super.key});
 
   @override
-  State<User> createState() => _UserState();
+  State<UserProfile> createState() => _UserProfileState();
 }
 
-class _UserState extends State<User> {
-  bool varOpen = true;
+class _UserProfileState extends State<UserProfile> {
+
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
+
+
+  Future<void> _logout(BuildContext context) async {
+    // Remove o token e o tipo do SharedPreferences
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.remove('token');
+    await prefs.remove('type');
+
+    // Retorna para a tela anterior
+    Navigator.pop(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,15 +39,41 @@ class _UserState extends State<User> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Align(
+            Align(
               alignment: Alignment.topRight,
-              child: SizedBox(
-                width: 100,
-                height: 100,
-                child: Icon(
-                  Icons.exit_to_app,
-                  color: primaryColor,
-                  size: 80,
+              child: GestureDetector(
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: const Text("Deseja sair?"),
+                      content:
+                          const Text("Você será desconectado da sua conta."),
+                      actions: <Widget>[
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop(); // Fecha o diálogo
+                          },
+                          child: const Text("Cancelar"),
+                        ),
+                        TextButton(
+                          onPressed: () async {
+                            await _logout(context); // Executa o logout
+                          },
+                          child: const Text("Sair"),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+                child: const SizedBox(
+                  width: 100,
+                  height: 100,
+                  child: Icon(
+                    Icons.exit_to_app,
+                    color: primaryColor,
+                    size: 80,
+                  ),
                 ),
               ),
             ),
@@ -64,13 +110,6 @@ class _UserState extends State<User> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Text(
-                      "Descrição...",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.normal,
-                      ),
-                    ),
                   ],
                 )
               ],
@@ -78,10 +117,10 @@ class _UserState extends State<User> {
             const SizedBox(height: 10),
             Column(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    const Flexible(
+                    Flexible(
                       child: Text(
                         "Editar informações do Perfil:",
                         style: TextStyle(
@@ -91,31 +130,19 @@ class _UserState extends State<User> {
                         ),
                       ),
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          varOpen = !varOpen;
-                        });
-                      },
-                      child: const Icon(
-                        Icons.edit,
-                        size: 40,
-                        color: primaryColor,
-                      ),
-                    ),
                   ],
                 ),
                 const SizedBox(height: 10),
-                const SizedBox(
+                SizedBox(
                   width: 800,
                   child: TextField(
-                    controller: null,
+                    controller: _nameController,
                     keyboardType: TextInputType.text,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       label: Text("Nome de Usuário"),
                       border: OutlineInputBorder(),
                     ),
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: primaryColor,
                     ),
                   ),
@@ -123,18 +150,18 @@ class _UserState extends State<User> {
               ],
             ),
             const SizedBox(height: 10),
-            const Column(
+            Column(
               children: [
                 SizedBox(
                   width: 800,
                   child: TextField(
-                    controller: null,
+                    controller: _emailController,
                     keyboardType: TextInputType.text,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       label: Text("Email"),
                       border: OutlineInputBorder(),
                     ),
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: primaryColor,
                     ),
                   ),
@@ -142,18 +169,18 @@ class _UserState extends State<User> {
               ],
             ),
             const SizedBox(height: 10),
-            const Column(
+            Column(
               children: [
                 SizedBox(
                   width: 800,
                   child: TextField(
-                    controller: null,
+                    controller: _passwordController,
                     keyboardType: TextInputType.text,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       label: Text("Nova Senha"),
                       border: OutlineInputBorder(),
                     ),
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: primaryColor,
                     ),
                   ),
@@ -161,37 +188,18 @@ class _UserState extends State<User> {
               ],
             ),
             const SizedBox(height: 10),
-            const Column(
+            Column(
               children: [
                 SizedBox(
                   width: 800,
                   child: TextField(
-                    controller: null,
+                    controller: _confirmPasswordController,
                     keyboardType: TextInputType.text,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       label: Text("Confirmar nova senha"),
                       border: OutlineInputBorder(),
                     ),
-                    style: TextStyle(
-                      color: primaryColor,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 10),
-            const Column(
-              children: [
-                SizedBox(
-                  width: 800,
-                  child: TextField(
-                    controller: null,
-                    keyboardType: TextInputType.text,
-                    decoration: InputDecoration(
-                      label: Text("Descrição do perfil"),
-                      border: OutlineInputBorder(),
-                    ),
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: primaryColor,
                     ),
                   ),
@@ -203,8 +211,36 @@ class _UserState extends State<User> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 FilledButton(
-                  onPressed: () {
-                    // funcao para salvar
+                  onPressed: () async {
+                    User user = User(
+                        name: _nameController.text,
+                        email: _emailController.text,
+                        type: '',
+                        token: '',
+                        password: _passwordController.text);
+                    if (await updateProfile(user)) {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return Column(
+                            children: [
+                              const Text("Salvado com sucesso!!"),
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: const Text("Fechar"),
+                              ),
+                            ],
+                          ); // Passa os valores do erro e descrição
+                        },
+                      );
+                    } else {
+                      ErrorDialog(
+                        erro: "Problema Update ",
+                        desc: "Algo deu errado, tente novamente",
+                      );
+                    }
                   },
                   style: FilledButton.styleFrom(
                       backgroundColor: primaryColor,
@@ -223,7 +259,33 @@ class _UserState extends State<User> {
                 const SizedBox(width: 20),
                 FilledButton(
                   onPressed: () {
-                    // funcao para deletar
+                    showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        title: const Text("Confirmar exclusão"),
+                        content: const Text(
+                            "Tem certeza de que deseja excluir sua conta? Essa ação não pode ser desfeita."),
+                        actions: <Widget>[
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop(); // Fecha o diálogo
+                            },
+                            child: const Text("Cancelar"),
+                          ),
+                          TextButton(
+                            onPressed: () async {
+                              Navigator.of(context).pop(); // Fecha o diálogo
+                              if (await deleteAccount()) {
+                                Navigator.of(context).popUntil((route) => route.isFirst);
+                              } else {
+                                ErrorDialog(desc: "Tente novamente", erro: "Não foi possivel apagar a conta");
+                              }
+                            },
+                            child: const Text("Excluir"),
+                          ),
+                        ],
+                      ),
+                    );
                   },
                   style: FilledButton.styleFrom(
                       backgroundColor: accentColor,
@@ -231,9 +293,9 @@ class _UserState extends State<User> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       )),
-                  child: Text(
-                    varOpen ? "Deletar" : "Cancelar",
-                    style: const TextStyle(
+                  child: const Text(
+                    "Deletar",
+                    style: TextStyle(
                       fontSize: 20,
                       color: secondaryColor,
                     ),

@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 const String apiUrl = "https://localhost:5432/events/";
 
 // Inserir um novo evento
-Future<void> insertEvent(Event event) async {
+Future<bool> insertEvent(Event event) async {
   try {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString('token');
@@ -24,6 +24,7 @@ Future<void> insertEvent(Event event) async {
 
       if (response.statusCode == 201) {
         print("Evento criado com sucesso!");
+        return true;
       } else {
         print("Erro ao criar evento: ${response.body}");
       }
@@ -33,28 +34,28 @@ Future<void> insertEvent(Event event) async {
   } catch (e) {
     print("Erro de conexão: $e");
   }
+  return false;
 }
 
 // Buscar um evento específico
-Future<void> getEvent(String eventId) async {
+Future<Map<String, dynamic>?> getEvent(String eventId) async {
   try {
-    // Obtém o token armazenado no SharedPreferences
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? token = prefs.getString('token'); // Busca o token
+    String? token = prefs.getString('token');
 
     if (token != null) {
-      // Faz a requisição GET passando o token no cabeçalho e o eventId na URL
       final response = await http.get(
-        Uri.parse('$apiUrl/getEvent?eventId=$eventId'), // Passa o eventId como query parameter
+        Uri.parse('$apiUrl/getEvent?eventId=$eventId'),
         headers: {
-          'Authorization': 'Bearer $token', // Passa o token como header
+          'Authorization': 'Bearer $token',
           'Content-Type': 'application/json',
         },
       );
 
       if (response.statusCode == 200) {
-        final data = jsonDecode(response.body); // Decodifica a resposta JSON
+        final data = jsonDecode(response.body);
         print("Evento: $data");
+        return data;
       } else {
         print("Erro ao buscar evento: ${response.body}");
       }
@@ -64,26 +65,29 @@ Future<void> getEvent(String eventId) async {
   } catch (e) {
     print("Erro de conexão: $e");
   }
+  return null;
 }
 
 // Buscar todos os eventos
-Future<void> getEvents() async {
+Future<List<dynamic>?> getEvents() async {
   try {
     final response = await http.get(Uri.parse('$apiUrl/getEvents'));
 
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
       print("Eventos: $data");
+      return data;
     } else {
       print("Erro ao buscar eventos: ${response.body}");
     }
   } catch (e) {
     print("Erro de conexão: $e");
   }
+  return null;
 }
 
 // Atualizar um evento
-Future<void> updateEvent(Event event) async {
+Future<bool> updateEvent(Event event) async {
   try {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString('token');
@@ -101,6 +105,7 @@ Future<void> updateEvent(Event event) async {
 
       if (response.statusCode == 200) {
         print("Evento atualizado com sucesso!");
+        return true;
       } else {
         print("Erro ao atualizar evento: ${response.body}");
       }
@@ -110,10 +115,11 @@ Future<void> updateEvent(Event event) async {
   } catch (e) {
     print("Erro de conexão: $e");
   }
+  return false;
 }
 
 // Deletar um evento
-Future<void> deleteEvent(String eventId) async {
+Future<bool> deleteEvent(String eventId) async {
   try {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString('token');
@@ -126,6 +132,7 @@ Future<void> deleteEvent(String eventId) async {
 
       if (response.statusCode == 200) {
         print("Evento deletado com sucesso!");
+        return true;
       } else {
         print("Erro ao deletar evento: ${response.body}");
       }
@@ -135,10 +142,11 @@ Future<void> deleteEvent(String eventId) async {
   } catch (e) {
     print("Erro de conexão: $e");
   }
+  return false;
 }
 
 // Inscrever-se em um evento
-Future<void> subscribeEvent(String eventId) async {
+Future<bool> subscribeEvent(String eventId) async {
   try {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString('token');
@@ -151,6 +159,7 @@ Future<void> subscribeEvent(String eventId) async {
 
       if (response.statusCode == 200) {
         print("Inscrito no evento com sucesso!");
+        return true;
       } else {
         print("Erro ao se inscrever no evento: ${response.body}");
       }
@@ -160,10 +169,11 @@ Future<void> subscribeEvent(String eventId) async {
   } catch (e) {
     print("Erro de conexão: $e");
   }
+  return false;
 }
 
 // Cancelar inscrição em um evento
-Future<void> unsubscribeEvent(String eventId) async {
+Future<bool> unsubscribeEvent(String eventId) async {
   try {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString('token');
@@ -176,6 +186,7 @@ Future<void> unsubscribeEvent(String eventId) async {
 
       if (response.statusCode == 200) {
         print("Inscrição cancelada com sucesso!");
+        return true;
       } else {
         print("Erro ao cancelar inscrição: ${response.body}");
       }
@@ -185,10 +196,11 @@ Future<void> unsubscribeEvent(String eventId) async {
   } catch (e) {
     print("Erro de conexão: $e");
   }
+  return false;
 }
 
 // Buscar eventos do usuário
-Future<void> getUserEvents() async {
+Future<List<dynamic>?> getUserEvents() async {
   try {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString('token');
@@ -202,6 +214,7 @@ Future<void> getUserEvents() async {
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
         print("Eventos do usuário: $data");
+        return data;
       } else {
         print("Erro ao buscar eventos do usuário: ${response.body}");
       }
@@ -211,4 +224,5 @@ Future<void> getUserEvents() async {
   } catch (e) {
     print("Erro de conexão: $e");
   }
+  return null;
 }

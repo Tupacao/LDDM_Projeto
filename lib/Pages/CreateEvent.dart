@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:projeto/Class/Event.dart';
+import 'package:projeto/Components/ErrorDialog.dart';
+import 'package:projeto/Req/EventReq.dart';
 import 'package:projeto/assets/Colors.dart';
 
 class CreateEvent extends StatefulWidget {
@@ -9,6 +12,10 @@ class CreateEvent extends StatefulWidget {
 }
 
 class _CreateEventState extends State<CreateEvent> {
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _dataController = TextEditingController();
+  final TextEditingController _descController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,9 +24,9 @@ class _CreateEventState extends State<CreateEvent> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Column(
+            Column(
               children: [
-                Align(
+                const Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
                     "Criar novo evento:",
@@ -29,8 +36,10 @@ class _CreateEventState extends State<CreateEvent> {
                     ),
                   ),
                 ),
-                SizedBox(height: 20,),
-                SizedBox(
+                const SizedBox(
+                  height: 20,
+                ),
+                const SizedBox(
                   width: 800,
                   child: Align(
                     alignment: Alignment.centerLeft,
@@ -47,14 +56,14 @@ class _CreateEventState extends State<CreateEvent> {
                 SizedBox(
                   width: 800,
                   child: TextField(
-                    controller: null,
+                    controller: _nameController,
                     keyboardType: TextInputType.text,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       filled: true,
                       fillColor: secondaryColor,
                     ),
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: primaryColor,
                     ),
                   ),
@@ -62,9 +71,9 @@ class _CreateEventState extends State<CreateEvent> {
               ],
             ),
             const SizedBox(height: 20),
-            const Column(
+            Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 800,
                   child: Align(
                     alignment: Alignment.centerLeft,
@@ -81,14 +90,14 @@ class _CreateEventState extends State<CreateEvent> {
                 SizedBox(
                   width: 800,
                   child: TextField(
-                    controller: null,
+                    controller: _dataController,
                     keyboardType: TextInputType.datetime,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       filled: true,
                       fillColor: secondaryColor,
                     ),
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: primaryColor,
                     ),
                   ),
@@ -100,7 +109,7 @@ class _CreateEventState extends State<CreateEvent> {
               children: [
                 const SizedBox(
                   width: 800,
-                  child: const Align(
+                  child: Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
                       "Descrição",
@@ -115,6 +124,7 @@ class _CreateEventState extends State<CreateEvent> {
                 SizedBox(
                     width: 800,
                     child: TextFormField(
+                      controller: _descController,
                       maxLines: 5,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
@@ -131,17 +141,42 @@ class _CreateEventState extends State<CreateEvent> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 FilledButton(
-                  onPressed: () {
-                    // funcao para salvar
+                  onPressed: () async {
+                    Event event = Event(
+                        title: _nameController.text,
+                        description: _descController.text,
+                        date: _dataController.text);
+                    if (await insertEvent(event)) {
+                      showDialog(
+                        context: context,
+                        builder: (builder) => Column(
+                          children: [
+                            const Text("Criado com sucesso"),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: const Text("Ok"),
+                            ),
+                          ],
+                        ),
+                      );
+                    } else {
+                      ErrorDialog(
+                        erro: "Erro ao criar evento",
+                        desc: "Tente novamente",
+                      );
+                    }
                   },
                   style: FilledButton.styleFrom(
-                      backgroundColor: primaryColor,
-                      minimumSize: const Size(100, 60),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      )),
+                    backgroundColor: primaryColor,
+                    minimumSize: const Size(100, 60),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
                   child: const Text(
-                    "Salvar",
+                    "Criar",
                     style: TextStyle(
                       fontSize: 20,
                       color: secondaryColor,

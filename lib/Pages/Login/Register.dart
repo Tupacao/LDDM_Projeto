@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:projeto/Class/User.dart';
+import 'package:projeto/Components/ErrorDialog.dart';
+import 'package:projeto/Req/UserReq.dart';
 import 'package:projeto/assets/Colors.dart';
 
 class Register extends StatefulWidget {
@@ -166,15 +169,27 @@ class _RegisterState extends State<Register> {
                   ),
                   const SizedBox(height: 10),
                   FilledButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/home');
+                    onPressed: () async {
+                      User user = User(
+                          name: _nameController.text,
+                          email: _emailController.text,
+                          type: '',
+                          token: '',
+                          password: _passwordController.text);
+
+                      if (await registerUser(user)) {
+                        Navigator.pushNamed(context, '/home');
+                      } else {
+                        ErrorDialog(erro: "Erro ao registrar", desc: "Algo de errado aconteceu, por favor tente novamente");
+                      }
                     },
                     style: FilledButton.styleFrom(
-                        backgroundColor: primaryColor,
-                        minimumSize: const Size(200, 60),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        )),
+                      backgroundColor: primaryColor,
+                      minimumSize: const Size(200, 60),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
                     child: const Text(
                       "Criar conta",
                       style: TextStyle(

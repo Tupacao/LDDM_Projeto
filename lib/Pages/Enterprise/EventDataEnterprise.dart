@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:projeto/Components/ErrorDialog.dart';
+import 'package:projeto/Req/EventReq.dart';
 import 'package:projeto/assets/Colors.dart';
 
 class EventDataEnterprise extends StatefulWidget {
@@ -121,7 +123,28 @@ class _EventDataEnterpriseState extends State<EventDataEnterprise> {
                             content: Row(
                               children: [
                                 FilledButton(
-                                  onPressed: () {},
+                                  onPressed: () async {
+                                    if (await deleteEvent('1')) {
+                                      showDialog(
+                                        context: context,
+                                        builder: (builder) => Column(
+                                          children: [
+                                            const Text("Criado com sucesso"),
+                                            TextButton(
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                              child: const Text("Ok"),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    } else {
+                                      ErrorDialog(
+                                          erro: "Erro deletar",
+                                          desc: "Tente novamente mais tarde");
+                                    }
+                                  },
                                   style: FilledButton.styleFrom(
                                       backgroundColor: accentColor,
                                       minimumSize: const Size(150, 60),
