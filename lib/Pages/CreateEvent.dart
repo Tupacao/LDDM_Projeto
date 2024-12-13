@@ -145,7 +145,7 @@ class _CreateEventState extends State<CreateEvent> {
                     Event event = Event(
                         title: _nameController.text,
                         description: _descController.text,
-                        date: _dataController.text);
+                        date: '2024-12-13T17:46:04Z');
                     if (await insertEvent(event)) {
                       showDialog(
                         context: context,
@@ -185,8 +185,34 @@ class _CreateEventState extends State<CreateEvent> {
                 ),
                 const SizedBox(width: 20),
                 FilledButton(
-                  onPressed: () {
-                    // funcao para deletar
+                  onPressed: () async{
+                    Event event = Event(
+                        id: 'e019eaea-73b9-4a6c-be53-4da23c9ddc87',
+                        title: _nameController.text,
+                        description: _descController.text,
+                        date: '2024-12-13T17:46:04Z');
+                    if(await updateEvent(event)){
+                       showDialog(
+                        context: context,
+                        builder: (builder) => Column(
+                          children: [
+                            const Text("update com sucesso"),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: const Text("Ok"),
+                            ),
+                          ],
+                        ),
+                      );
+                    } else {
+                      ErrorDialog(
+                        erro: "Erro ao update evento",
+                        desc: "Tente novamente",
+                      );
+                    }
+                    
                   },
                   style: FilledButton.styleFrom(
                       backgroundColor: accentColor,

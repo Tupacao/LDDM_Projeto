@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto/Req/EventReq.dart';
 import 'package:projeto/assets/Colors.dart';
 
 class NavBottomBarIndice extends StatefulWidget {
@@ -42,7 +43,7 @@ class _NavBottomBarIndiceState extends State<NavBottomBarIndice> {
                     ),
                   ),
                 ),
-              if (widget.value == "A" || widget.value == 'E')
+              if (widget.value == "P" || widget.value == 'E')
                 GestureDetector(
                   onTap: () {
                     widget.onTabSelected(
@@ -62,7 +63,7 @@ class _NavBottomBarIndiceState extends State<NavBottomBarIndice> {
                     ),
                   ),
                 ),
-              if (widget.value == "A")
+              if (widget.value == "P")
                 GestureDetector(
                   onTap: () {
                     widget.onTabSelected(
@@ -116,7 +117,10 @@ class _NavBottomBarIndiceState extends State<NavBottomBarIndice> {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () {
+                  onTap: () async{
+                    if(await getUserEvents() != null){
+                      print("deu certo");
+                    }
                     widget.onTabSelected(0); // indice da home
                   },
                   child: Container(

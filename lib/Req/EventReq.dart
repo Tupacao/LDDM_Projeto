@@ -3,7 +3,7 @@ import 'package:projeto/Class/Event.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
-const String apiUrl = "https://localhost:5432/events/";
+const String apiUrl = "http://localhost:8080/api/v1/events";
 
 // Inserir um novo evento
 Future<bool> insertEvent(Event event) async {
@@ -14,12 +14,12 @@ Future<bool> insertEvent(Event event) async {
     if (token != null) {
       final response = await http.post(
         Uri.parse('$apiUrl/insert'),
-        headers: {'Authorization': 'Bearer $token'},
-        body: {
+        headers: {'Authorization': token, 'Content-Type': 'application/json'},
+        body: jsonEncode({
           'title': event.title,
-          'date': event.date,
+          'eventDate': event.date,
           'description': event.description,
-        },
+        }),
       );
 
       if (response.statusCode == 201) {
@@ -47,7 +47,7 @@ Future<Map<String, dynamic>?> getEvent(String eventId) async {
       final response = await http.get(
         Uri.parse('$apiUrl/getEvent?eventId=$eventId'),
         headers: {
-          'Authorization': 'Bearer $token',
+          'Authorization': token,
           'Content-Type': 'application/json',
         },
       );
@@ -69,16 +69,27 @@ Future<Map<String, dynamic>?> getEvent(String eventId) async {
 }
 
 // Buscar todos os eventos
-Future<List<dynamic>?> getEvents() async {
+Future<List<dynamic>?> getEvents(int page) async {
   try {
-    final response = await http.get(Uri.parse('$apiUrl/getEvents'));
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString('token');
 
-    if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      print("Eventos: $data");
-      return data;
-    } else {
-      print("Erro ao buscar eventos: ${response.body}");
+    if (token != null) {
+      final response = await http.get(
+        Uri.parse('$apiUrl/getEvents?page=$page'),
+        headers: {
+          'Authorization': token,
+          'Content-Type': 'application/json',
+        },
+      );
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        print("Eventos: $data");
+        return data;
+      } else {
+        print("Erro ao buscar eventos: ${response.body}");
+      }
     }
   } catch (e) {
     print("Erro de conexão: $e");
@@ -94,13 +105,14 @@ Future<bool> updateEvent(Event event) async {
 
     if (token != null) {
       final response = await http.put(
-        Uri.parse('$apiUrl/update/${event.id}'),
-        headers: {'Authorization': 'Bearer $token'},
-        body: {
+        Uri.parse('$apiUrl/update'),
+        headers: {'Authorization': token, 'Content-Type': 'application/json'},
+        body: jsonEncode({
           'title': event.title,
-          'date': event.date,
+          'eventDate': event.date,
           'description': event.description,
-        },
+          'eventId': event.id,
+        }),
       );
 
       if (response.statusCode == 200) {
@@ -126,8 +138,8 @@ Future<bool> deleteEvent(String eventId) async {
 
     if (token != null) {
       final response = await http.delete(
-        Uri.parse('$apiUrl/delete/$eventId'),
-        headers: {'Authorization': 'Bearer $token'},
+        Uri.parse('$apiUrl/delete?eventId=$eventId'),
+        headers: {'Authorization': token, 'Content-Type': 'application/json'},
       );
 
       if (response.statusCode == 200) {
@@ -152,10 +164,11 @@ Future<bool> subscribeEvent(String eventId) async {
     String? token = prefs.getString('token');
 
     if (token != null) {
-      final response = await http.post(
-        Uri.parse('$apiUrl/subscribe/$eventId'),
-        headers: {'Authorization': 'Bearer $token'},
-      );
+      final response = await http.post(Uri.parse('$apiUrl/subscribe'),
+          headers: {'Authorization': token, 'Content-Type': 'application/json'},
+          body: jsonEncode({
+            'eventId': eventId,
+          }));
 
       if (response.statusCode == 200) {
         print("Inscrito no evento com sucesso!");
@@ -179,10 +192,11 @@ Future<bool> unsubscribeEvent(String eventId) async {
     String? token = prefs.getString('token');
 
     if (token != null) {
-      final response = await http.post(
-        Uri.parse('$apiUrl/unsubscribe/$eventId'),
-        headers: {'Authorization': 'Bearer $token'},
-      );
+      final response = await http.delete(Uri.parse('$apiUrl/unsubscribe'),
+          headers: {'Authorization': token, 'Content-Type': 'application/json'},
+          body: jsonEncode({
+            'eventId': eventId,
+          }));
 
       if (response.statusCode == 200) {
         print("Inscrição cancelada com sucesso!");
@@ -207,8 +221,8 @@ Future<List<dynamic>?> getUserEvents() async {
 
     if (token != null) {
       final response = await http.get(
-        Uri.parse('$apiUrl/user/events'),
-        headers: {'Authorization': 'Bearer $token'},
+        Uri.parse('$apiUrl/getUserEvents'),
+        headers: {'Authorization': token, 'Content-Type': 'application/json'},
       );
 
       if (response.statusCode == 200) {
@@ -217,6 +231,34 @@ Future<List<dynamic>?> getUserEvents() async {
         return data;
       } else {
         print("Erro ao buscar eventos do usuário: ${response.body}");
+      }
+    } else {
+      print("Token não encontrado!");
+    }
+  } catch (e) {
+    print("Erro de conexão: $e");
+  }
+  return null;
+}
+
+// Buscar eventos criados pelo usuário
+Future<List<dynamic>?> getUserCreatedEvents() async {
+  try {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString('token');
+
+    if (token != null) {
+      final response = await http.get(
+        Uri.parse('$apiUrl/getUserCreatedEvents'),
+        headers: {'Authorization': token, 'Content-Type': 'application/json'},
+      );
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        print("Eventos criados pelo usuário: $data");
+        return data['userEvents']; // Ajuste baseado na estrutura do `UserEventsModel`
+      } else {
+        print("Erro ao buscar eventos criados pelo usuário: ${response.body}");
       }
     } else {
       print("Token não encontrado!");

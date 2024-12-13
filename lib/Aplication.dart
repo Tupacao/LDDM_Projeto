@@ -53,12 +53,12 @@ class _AplicationState extends State<Aplication> {
         index: index,
         children: [
           if (type == 'E') const HomeEnterprise()
-          else if (type == 'P') const Home()
-          else if (type == 'T') const HomeTeacher() // Verifique se o tipo é 'T' para Teacher
+          else if (type == 'A') const Home()
+          else if (type == 'P') const HomeTeacher() // Verifique se o tipo é 'T' para Teacher
           else const SizedBox.shrink(), // Caso nenhum tipo seja encontrado, não exibe nada
           const UserProfile(),
           if (type == 'P' || type == 'A') const Calendar() else const SizedBox.shrink(),
-          if (type == 'A' || type == 'P') const CreateEvent() else const SizedBox.shrink(),
+          if (type == 'P' || type == 'A') const CreateEvent() else const SizedBox.shrink(),
           if (type == 'A') const YourEvents() else const SizedBox.shrink(),
         ],
       ),

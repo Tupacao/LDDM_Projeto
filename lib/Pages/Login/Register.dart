@@ -173,11 +173,11 @@ class _RegisterState extends State<Register> {
                       User user = User(
                           name: _nameController.text,
                           email: _emailController.text,
-                          type: '',
+                          type: 'A',
                           token: '',
                           password: _passwordController.text);
 
-                      if (await registerUser(user)) {
+                      if (await insertUser(user)) {
                         Navigator.pushNamed(context, '/home');
                       } else {
                         ErrorDialog(erro: "Erro ao registrar", desc: "Algo de errado aconteceu, por favor tente novamente");

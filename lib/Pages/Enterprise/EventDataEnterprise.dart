@@ -124,7 +124,7 @@ class _EventDataEnterpriseState extends State<EventDataEnterprise> {
                               children: [
                                 FilledButton(
                                   onPressed: () async {
-                                    if (await deleteEvent('1')) {
+                                    if (await deleteEvent('d4fc669b-8a7d-4ab4-81d5-00d9a9706abb')) {
                                       showDialog(
                                         context: context,
                                         builder: (builder) => Column(

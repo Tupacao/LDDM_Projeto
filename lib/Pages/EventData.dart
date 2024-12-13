@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:projeto/Components/ErrorDialog.dart';
+import 'package:projeto/Req/EventReq.dart';
 import 'package:projeto/assets/Colors.dart';
 
 class EventData extends StatefulWidget {
@@ -78,9 +80,29 @@ class _EventDataState extends State<EventData> {
               Padding(
                 padding: const EdgeInsets.all(20),
                 child: FilledButton(
-                  onPressed: () {
-                    Navigator.pushNamed(
-                        context, "/:user/events_calendar/:data");
+                  onPressed: () async {
+                    if (await subscribeEvent(
+                        'aca145f2-57bd-4707-be40-6b9d3dc90396')) {
+                      showDialog(
+                        context: context,
+                        builder: (builder) => Column(
+                          children: [
+                            const Text("Você está participando"),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: const Text("Ok"),
+                            ),
+                          ],
+                        ),
+                      );
+                    } else {
+                      ErrorDialog(
+                          erro: "Erro ao registrar",
+                          desc:
+                              "Algo de errado aconteceu, por favor tente novamente");
+                    }
                   },
                   style: FilledButton.styleFrom(
                       backgroundColor: accentColor,

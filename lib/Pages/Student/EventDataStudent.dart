@@ -96,7 +96,7 @@ class _EventDataStudentState extends State<EventDataStudent> {
                   padding: const EdgeInsets.all(20),
                   child: FilledButton(
                     onPressed: () async {
-                      if (await unsubscribeEvent('1')) {
+                      if (await unsubscribeEvent('aca145f2-57bd-4707-be40-6b9d3dc90396')) {
                         showDialog(
                           context: context,
                           builder: (builder) => Column(

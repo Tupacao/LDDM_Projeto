@@ -3,17 +3,20 @@ import 'package:projeto/Class/User.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
-const String apiUrl = "https://localhost:5432/user/"; // Substitua pela URL da sua API
+const String apiUrl = "http://localhost:8080/api/v1/users";
 
 // Função de Login
 Future<bool> loginUser(User user) async {
   try {
     final response = await http.post(
       Uri.parse('$apiUrl/login'),
-      body: {
+      headers: {
+        'Content-Type': 'application/json', // Especifica que o corpo é JSON
+      },
+      body: jsonEncode({
         'email': user.email,
         'password': user.password,
-      },
+      }),
     );
 
     if (response.statusCode == 200) {
@@ -21,38 +24,47 @@ Future<bool> loginUser(User user) async {
 
       // Salvar o token no SharedPreferences
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      await prefs.setString('token', data['token']);
-      await prefs.setString('type', data['type']);
+      String token = data['token'];
+      await prefs.setString('token', token);
+
+      // Dividir o token em partes
+      List<String> aux = token.split('.');
+
+      if (aux.length > 1) {
+        // Decodificar a segunda parte (payload)
+        String payload = utf8.decode(base64.decode(base64.normalize(aux[1])));
+        Map<String, dynamic> decodedPayload = jsonDecode(payload);
+
+        // Obter o valor de "type" e mapear para A, P, E
+        String userType = decodedPayload['type'];
+        String mappedType;
+
+        switch (userType) {
+          case "ALUNO":
+            mappedType = "A";
+            break;
+          case "PROFESSOR":
+            mappedType = "P";
+            break;
+          case "EMPRESA":
+            mappedType = "E";
+            break;
+          default:
+            mappedType = "U"; // Caso desconhecido (U = Unknown)
+        }
+
+        // Salvar o tipo mapeado no SharedPreferences
+        await prefs.setString('type', mappedType);
+
+        print("Tipo mapeado e salvo: $mappedType");
+      } else {
+        print("Token malformado.");
+      }
 
       print("Login bem-sucedido!");
       return true; // Retorna true em caso de sucesso
     } else {
       print("Falha no login: ${response.body}");
-      return false; // Retorna false em caso de falha
-    }
-  } catch (e) {
-    print("Erro de conexão: $e");
-    return false; // Retorna false em caso de erro
-  }
-}
-
-// Função de Registro
-Future<bool> registerUser(User user) async {
-  try {
-    final response = await http.post(
-      Uri.parse('$apiUrl/register'),
-      body: {
-        'name': user.name,
-        'email': user.email,
-        'password': user.password,
-      },
-    );
-
-    if (response.statusCode == 201) {
-      print("Registro bem-sucedido!");
-      return true; // Retorna true em caso de sucesso
-    } else {
-      print("Falha no registro: ${response.body}");
       return false; // Retorna false em caso de falha
     }
   } catch (e) {
@@ -69,7 +81,10 @@ Future<bool> deleteAccount() async {
   if (token != null) {
     final response = await http.delete(
       Uri.parse('$apiUrl/delete'),
-      headers: {'Authorization': 'Bearer $token'},
+      headers: {
+        'Authorization': token,
+        'Content-Type': 'application/json'
+      },
     );
 
     if (response.statusCode == 200) {
@@ -95,12 +110,15 @@ Future<bool> updateProfile(User user) async {
   if (token != null) {
     final response = await http.put(
       Uri.parse('$apiUrl/update'),
-      headers: {'Authorization': 'Bearer $token'},
-      body: {
+      headers: {
+        'Authorization': token,
+        'Content-Type': 'application/json'
+      },
+      body: jsonEncode({
         'name': user.name,
         'email': user.email,
         'password': user.password,
-      },
+      }),
     );
 
     if (response.statusCode == 200) {
@@ -121,22 +139,16 @@ Future<bool> insertUser(User user) async {
   try {
     final response = await http.post(
       Uri.parse('$apiUrl/insert'),
-      body: {
+      headers: {'Authorization': '', 'Content-Type': 'application/json'},
+      body: jsonEncode({
         'name': user.name,
         'email': user.email,
         'password': user.password,
         'type': user.type,
-      },
+      }),
     );
 
     if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-
-      // Salvar o token no SharedPreferences
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      await prefs.setString('token', data['token']);
-      await prefs.setString('type', data['type']);
-
       print("Inserção bem-sucedida!");
       return true; // Retorna true em caso de sucesso
     } else {
