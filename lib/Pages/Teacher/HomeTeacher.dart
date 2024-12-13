@@ -57,11 +57,18 @@ class _HomeTeacherState extends State<HomeTeacher> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceAround,
                                   children: [
-                                    const Text("Filtro 1 "),
-                                    const Text("Filtro 1"),
-                                    const Text("Filtro 1"),
-                                    const Text("Filtro 1"),
-                                    const Text("Filtro 1"),
+                                    FilledButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: const Text("Nome"),
+                                    ),
+                                    FilledButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: const Text("Data"),
+                                    ),
                                     FilledButton(
                                       onPressed: () {
                                         Navigator.of(context).pop();
@@ -133,12 +140,13 @@ class _HomeTeacherState extends State<HomeTeacher> {
                 itemBuilder: (context, index) {
                   return const Padding(
                     padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
-                    child: EventCard(goTo: '/event_data/:enterprise', past: false),
+                    child:
+                        EventCard(goTo: '/event_data/:enterprise', past: false),
                   );
                 },
               ),
             ),
-          if(!_varOpen)
+          if (!_varOpen)
             Expanded(
               child: ListView.builder(
                 padding: const EdgeInsets.symmetric(vertical: 10),

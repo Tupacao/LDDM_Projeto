@@ -54,11 +54,18 @@ class _HomeState extends State<Home> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceAround,
                                     children: [
-                                      const Text("Filtro 1 "),
-                                      const Text("Filtro 1"),
-                                      const Text("Filtro 1"),
-                                      const Text("Filtro 1"),
-                                      const Text("Filtro 1"),
+                                      FilledButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: const Text("Nome"),
+                                      ),
+                                      FilledButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: const Text("Data"),
+                                      ),
                                       FilledButton(
                                         onPressed: () {
                                           Navigator.of(context).pop();
