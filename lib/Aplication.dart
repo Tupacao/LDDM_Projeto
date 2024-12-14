@@ -59,7 +59,7 @@ class _AplicationState extends State<Aplication> {
           const UserProfile(),
           if (type == 'P' || type == 'A') const Calendar() else const SizedBox.shrink(),
           if (type == 'P' || type == 'E') const CreateEvent() else const SizedBox.shrink(),
-          if (type == 'P' || type == 'E') const YourEvents() else const SizedBox.shrink(),
+          if (type == 'P') const YourEvents() else const SizedBox.shrink(),
         ],
       ),
       bottomNavigationBar: NavBottomBarIndice(
