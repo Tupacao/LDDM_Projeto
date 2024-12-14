@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:projeto/Class/Event.dart';
+import 'package:projeto/Components/ErrorDialog.dart';
 import 'package:projeto/Components/EventCard.dart';
+import 'package:projeto/Req/EventReq.dart';
 import 'package:projeto/assets/Colors.dart';
 
 class HomeTeacher extends StatefulWidget {
@@ -11,7 +14,49 @@ class HomeTeacher extends StatefulWidget {
 
 class _HomeTeacherState extends State<HomeTeacher> {
   final TextEditingController _searchController = TextEditingController();
-  bool _varOpen = true;
+
+  List<Event> _events = [];
+  List<Event> _filteredEvents = []; // Lista filtrada
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadEvents();
+
+    // Ouvir mudanças no campo de pesquisa
+    _searchController.addListener(() {
+      _filterEvents();
+    });
+  }
+
+  // Função para carregar os eventos
+  Future<void> _loadEvents() async {
+    final events = await getEvents(0);
+    if (events != null) {
+      setState(() {
+        _events = events;
+        _filteredEvents = events; // Inicia com todos os eventos
+        _isLoading = false;
+      });
+    } else {
+      setState(() {
+        _isLoading = false;
+      });
+      showErrorDialog(
+          context, "Erro ao carregar eventos", "Tente novamente mais tarde.");
+    }
+  }
+
+  // Função para filtrar eventos com base no texto do campo de pesquisa
+  void _filterEvents() {
+    String query = _searchController.text.toLowerCase();
+    setState(() {
+      _filteredEvents = _events
+          .where((event) => event.title.toLowerCase().contains(query))
+          .toList();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,116 +86,50 @@ class _HomeTeacherState extends State<HomeTeacher> {
                 ),
                 const SizedBox(height: 10),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    SizedBox(
-                      width: 200,
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: GestureDetector(
-                          onTap: () {
-                            showDialog(
-                              context: context,
-                              builder: (context) => AlertDialog(
-                                title: const Text("Selecione os seus filtros"),
-                                content: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  children: [
-                                    const Text("Filtro 1 "),
-                                    const Text("Filtro 1"),
-                                    const Text("Filtro 1"),
-                                    const Text("Filtro 1"),
-                                    const Text("Filtro 1"),
-                                    FilledButton(
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                      child: const Text("Aplicar Filtros"),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            );
-                          },
-                          child: Container(
-                            width: 100,
-                            padding: const EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                              color: accentColor,
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Filtro",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 8,
-                                ),
-                                Icon(Icons.add),
-                              ],
-                            ),
-                          ),
-                        ),
+                    GestureDetector(
+                      onTap: () {
+                        // Chama a função _loadEvents para recarregar os eventos
+                        setState(() {
+                          _isLoading = true; // Inicia o carregamento
+                        });
+                        _loadEvents();
+                      },
+                      child: const Icon(
+                        Icons.refresh, // Ícone de reload
+                        size: 30,
+                        color: Colors.blue, // Cor do ícone, você pode mudar
                       ),
                     ),
-                    Row(children: [
-                      TextButton(
-                        onPressed: () {
-                          setState(() {
-                            _varOpen = true;
-                          });
-                        },
-                        child: const Text("Eventos"),
-                      ),
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          setState(() {
-                            _varOpen = false;
-                          });
-                        },
-                        child: const Text("Para Avaliar"),
-                      ),
-                    ]),
                   ],
-                ),
+                )
               ],
             ),
           ),
-          if (_varOpen)
-            Expanded(
-              child: ListView.builder(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return const Padding(
-                    padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
-                    child: EventCard(goTo: '/event_data/:enterprise', past: false),
-                  );
-                },
-              ),
-            ),
-          if(!_varOpen)
-            Expanded(
-              child: ListView.builder(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return const Padding(
-                    padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
-                    child: EventCard(goTo: '/event_data/:teacher', past: true),
-                  );
-                },
-              ),
-            ),
+          _isLoading
+              ? const Center(child: CircularProgressIndicator())
+              : _filteredEvents.isEmpty
+                  ? const Center(child: Text("Nenhum evento encontrado."))
+                  : Expanded(
+                      child: ListView.builder(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        itemCount: _filteredEvents.length,
+                        itemBuilder: (context, index) {
+                          final event = _filteredEvents[index];
+                          return Padding(
+                            padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
+                            child: EventCard(
+                              goTo: '/event_data/:teacher',
+                              title: event.title,
+                              date: event.date,
+                              id: event.id,
+                              past: false,
+                            ),
+                          );
+                        },
+                      ),
+                    ),
         ],
       ),
       backgroundColor: secondaryColor,

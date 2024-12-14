@@ -6,7 +6,6 @@ import 'package:projeto/Pages/Login/Login.dart';
 import 'package:projeto/Pages/Login/Register.dart';
 import 'package:projeto/Pages/Student/EventDataStudent.dart';
 import 'package:projeto/Pages/Teacher/EventDataTeacher.dart';
-
 void main (){
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,

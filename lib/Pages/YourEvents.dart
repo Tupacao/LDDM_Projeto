@@ -5,14 +5,14 @@ import 'package:projeto/Components/EventCard.dart';
 import 'package:projeto/Req/EventReq.dart';
 import 'package:projeto/assets/Colors.dart';
 
-class HomeEnterprise extends StatefulWidget {
-  const HomeEnterprise({super.key});
+class YourEvents extends StatefulWidget {
+  const YourEvents({super.key});
 
   @override
-  State<HomeEnterprise> createState() => _HomeEnterpriseState();
+  State<YourEvents> createState() => _YourEventsState();
 }
 
-class _HomeEnterpriseState extends State<HomeEnterprise> {
+class _YourEventsState extends State<YourEvents> {
   List<Event> _events = [];
   bool _isLoading = true;
 
@@ -46,7 +46,7 @@ class _HomeEnterpriseState extends State<HomeEnterprise> {
           const Align(
             alignment: Alignment.center,
             child: Text(
-              "Seus Eventos",
+              "Seus Eventos Criados",
               style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
@@ -74,31 +74,41 @@ class _HomeEnterpriseState extends State<HomeEnterprise> {
           ),
           const SizedBox(height: 20),
           if (!_isLoading)
-            if (_events.length > 0)
-              Flexible(
-                flex: 1,
-                child: Container(
-                  constraints: const BoxConstraints(maxHeight: 800),
-                  child: ListView.builder(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    itemCount: _events.length,
-                    itemBuilder: (context, index) {
-                      final event = _events[index];
-                      return Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
-                        child: EventCard(
-                          goTo: '/event_data/:enterprise',
-                          title: event.title,
-                          date: event.date,
-                          id: event.id,
-                          past: false,
-                        ),
-                      );
-                    },
-                  ),
+            Flexible(
+              flex: 1,
+              child: Container(
+                constraints: const BoxConstraints(maxHeight: 800),
+                child: ListView.builder(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  itemCount: _events.length,
+                  itemBuilder: (context, index) {
+                    final event = _events[index];
+                    return Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
+                      child: EventCard(
+                        goTo: '/event_data/:enterprise',
+                        title: event.title,
+                        date: event.date,
+                        id: event.id,
+                        past: false,
+                      ),
+                    );
+                  },
                 ),
               ),
-          if (_events.length == 0) Text("Não tem eventos")
+            ),
+          // Expanded(
+          //   child: ListView.builder(
+          //     padding: const EdgeInsets.symmetric(vertical: 10),
+          //     itemCount: 10,
+          //     itemBuilder: (context, index) {
+          //       return const Padding(
+          //         padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+          //         // child: EventCard(goTo: '/event_data/:enterprise', past: false),
+          //       );
+          //     },
+          //   ),
+          // ),
         ],
       ),
       backgroundColor: secondaryColor,

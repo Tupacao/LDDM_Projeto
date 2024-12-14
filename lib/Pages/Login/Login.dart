@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:projeto/Class/User.dart';
+import 'package:projeto/Components/ErrorDialog.dart';
+import 'package:projeto/Req/UserReq.dart';
 import 'package:projeto/assets/Colors.dart';
 
 class Login extends StatefulWidget {
@@ -9,31 +12,6 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  List<Map<String, String>> users = [
-    {'email': 'aluno@gmail.com', 'senha': 'ps1'},
-    {'email': 'professor@gmail.com', 'senha': 'ps2'},
-    {'email': 'empresa@gmail.com', 'senha': 'ps3'},
-    {'email': 'adm', 'senha': '123'}
-  ];
-
-  int testLogin() {
-    if (_emailController.text == users[0]['email'] &&
-        _passwordController.text == users[0]['senha']) {
-      return 1;
-    } else if (_emailController.text == users[1]['email'] &&
-        _passwordController.text == users[1]['senha']) {
-      return 2;
-    } else if (_emailController.text == users[2]['email'] &&
-        _passwordController.text == users[2]['senha']) {
-      return 3;
-    } else if (_emailController.text == users[3]['email'] &&
-        _passwordController.text == users[3]['senha']) {
-      return 3;
-    } else {
-      return -1;
-    }
-  }
-
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
 
@@ -41,8 +19,9 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-          child: Center(
+        padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+        child: Center(
+          child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -126,31 +105,33 @@ class _LoginState extends State<Login> {
                 ),
                 const SizedBox(height: 40),
                 FilledButton(
-                  onPressed: () {
-                    int value = testLogin();
+                  onPressed: () async {
+                    User user = User(
+                        name: '',
+                        email: _emailController.text,
+                        type: '',
+                        token: '',
+                        password: _passwordController.text);
 
-                    if (value != -1) {
+                    if (await loginUser(user)) {
+                      _passwordController.clear();
+                      _emailController.clear();
+                      
                       Navigator.pushNamed(
                         context,
                         '/home',
-                        arguments: value,
                       );
                     } else {
-                      showDialog(
-                          context: context,
-                          builder: (context) => const AlertDialog(
-                                title: Text("Erro de Login"),
-                                content: Text(
-                                    "Email ou senha inválidos, tente novamente"),
-                              ));
+                      showErrorDialog(context, "Erro no Login", "Senha ou email estão errados");
                     }
                   },
                   style: FilledButton.styleFrom(
-                      backgroundColor: primaryColor,
-                      minimumSize: const Size(200, 60),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      )),
+                    backgroundColor: primaryColor,
+                    minimumSize: const Size(200, 60),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
                   child: const Text(
                     "Entrar",
                     style: TextStyle(
@@ -176,7 +157,9 @@ class _LoginState extends State<Login> {
                 ),
               ],
             ),
-          )),
+          ),
+        ),
+      ),
       backgroundColor: secondaryColor,
     );
   }

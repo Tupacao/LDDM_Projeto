@@ -3,9 +3,9 @@ import 'package:projeto/assets/Colors.dart';
 
 class NavBottomBarIndice extends StatefulWidget {
   final Function(int) onTabSelected; // Adiciona o callback para mudar o índice
-  final int? value;
+  final String value;
   const NavBottomBarIndice(
-      {required this.onTabSelected, this.value, super.key});
+      {required this.onTabSelected, required this.value, super.key});
 
   @override
   State<NavBottomBarIndice> createState() => _NavBottomBarIndiceState();
@@ -22,7 +22,7 @@ class _NavBottomBarIndiceState extends State<NavBottomBarIndice> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              if (widget.value == 1 || widget.value == 2)
+              if (widget.value == 'P' || widget.value == 'A')
                 GestureDetector(
                   onTap: () {
                     widget.onTabSelected(
@@ -42,7 +42,7 @@ class _NavBottomBarIndiceState extends State<NavBottomBarIndice> {
                     ),
                   ),
                 ),
-              if (widget.value == 2 || widget.value == 3)
+              if (widget.value == "P" || widget.value == 'E')
                 GestureDetector(
                   onTap: () {
                     widget.onTabSelected(
@@ -62,7 +62,7 @@ class _NavBottomBarIndiceState extends State<NavBottomBarIndice> {
                     ),
                   ),
                 ),
-              if (widget.value == 2)
+              if (widget.value == "P")
                 GestureDetector(
                   onTap: () {
                     widget.onTabSelected(
@@ -116,8 +116,8 @@ class _NavBottomBarIndiceState extends State<NavBottomBarIndice> {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () {
-                    widget.onTabSelected(0); // indice da home
+                  onTap: () async{
+                    widget.onTabSelected(0);
                   },
                   child: Container(
                     width: 60,

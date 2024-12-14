@@ -5,8 +5,9 @@ import 'package:projeto/Pages/Calendar.dart';
 import 'package:projeto/Pages/Enterprise/HomeEnterprise.dart';
 import 'package:projeto/Pages/Student/Home.dart';
 import 'package:projeto/Pages/Teacher/HomeTeacher.dart';
-import 'package:projeto/Pages/Teacher/YourEvents.dart';
+import 'package:projeto/Pages/YourEvents.dart';
 import 'package:projeto/assets/Colors.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'Pages/User.dart';
 
 class Aplication extends StatefulWidget {
@@ -17,15 +18,25 @@ class Aplication extends StatefulWidget {
 }
 
 class _AplicationState extends State<Aplication> {
-  int value = 0; // Inicializa sem valor até obter o argumento
+  String type = 'P'; // Inicializa sem valor até obter o argumento
   int index = 0;
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
+  void initState() {
+    super.initState();
+    _getUserType();
+  }
 
-    // Recupera o valor passado pela rota e armazena
-    value = (ModalRoute.of(context)?.settings.arguments as int?)!;
+  // Função para buscar o tipo de usuário no SharedPreferences
+  Future<void> _getUserType() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? storedType = prefs.getString('type');
+    
+    if (storedType != null) {
+      setState(() {
+        type = storedType; // Atualiza o estado com o tipo de usuário
+      });
+    }
   }
 
   void _onTabSelected(int selectedIndex) {
@@ -41,16 +52,19 @@ class _AplicationState extends State<Aplication> {
       body: IndexedStack(
         index: index,
         children: [
-          if (value == 3) const HomeEnterprise() else if(value == 1) const Home() else const HomeTeacher(),
-          const User(),
-          if (value == 1 || value == 2) const Calendar() else const SizedBox.shrink(),
-          if (value == 2 || value == 3) const CreateEvent() else const SizedBox.shrink(),
-          if (value == 2) const YourEvents() else const SizedBox.shrink(),
+          if (type == 'E') const HomeEnterprise()
+          else if (type == 'A') const Home()
+          else if (type == 'P') const HomeTeacher() // Verifique se o tipo é 'T' para Teacher
+          else const SizedBox.shrink(), // Caso nenhum tipo seja encontrado, não exibe nada
+          const UserProfile(),
+          if (type == 'P' || type == 'A') const Calendar() else const SizedBox.shrink(),
+          if (type == 'P' || type == 'E') const CreateEvent() else const SizedBox.shrink(),
+          if (type == 'P') const YourEvents() else const SizedBox.shrink(),
         ],
       ),
       bottomNavigationBar: NavBottomBarIndice(
         onTabSelected: _onTabSelected,
-        value: value,
+        value: type,
       ),
     );
   }
