@@ -115,7 +115,7 @@ class _EventDataEnterpriseState extends State<EventDataEnterprise> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  subtitle: Text(convertToDateFormat(_event!.date) ?? "Carregando..."),
+                  subtitle: Text(convertToDateFormat(_event!.date)),
                 ),
                 const SizedBox(height: 20),
                 SizedBox(
