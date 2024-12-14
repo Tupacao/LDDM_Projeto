@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projeto/Class/User.dart';
 import 'package:projeto/Components/ErrorDialog.dart';
+import 'package:projeto/Components/SuccesDialog.dart';
 import 'package:projeto/Req/UserReq.dart';
 import 'package:projeto/assets/Colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -13,13 +14,11 @@ class UserProfile extends StatefulWidget {
 }
 
 class _UserProfileState extends State<UserProfile> {
-
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
-
 
   Future<void> _logout(BuildContext context) async {
     // Remove o token e o tipo do SharedPreferences
@@ -59,6 +58,8 @@ class _UserProfileState extends State<UserProfile> {
                         TextButton(
                           onPressed: () async {
                             await _logout(context); // Executa o logout
+                            Navigator.of(context)
+                                .popUntil((route) => route.isFirst);
                           },
                           child: const Text("Sair"),
                         ),
@@ -93,25 +94,25 @@ class _UserProfileState extends State<UserProfile> {
                   ),
                 ),
                 const SizedBox(width: 20),
-                const Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Nome do Usuário",
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.normal,
-                      ),
-                    ),
-                    Text(
-                      "eumesmo@gmail.com",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                )
+                // const Column(
+                //   crossAxisAlignment: CrossAxisAlignment.start,
+                //   children: [
+                //     Text(
+                //       "Nome do Usuário",
+                //       style: TextStyle(
+                //         fontSize: 25,
+                //         fontWeight: FontWeight.normal,
+                //       ),
+                //     ),
+                //     Text(
+                //       "eumesmo@gmail.com",
+                //       style: TextStyle(
+                //         fontSize: 18,
+                //         fontWeight: FontWeight.bold,
+                //       ),
+                //     ),
+                //   ],
+                // )
               ],
             ),
             const SizedBox(height: 10),
@@ -218,29 +219,36 @@ class _UserProfileState extends State<UserProfile> {
                         type: '',
                         token: '',
                         password: _passwordController.text);
-                    if (await updateProfile(user)) {
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return Column(
-                            children: [
-                              const Text("Salvado com sucesso!!"),
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                child: const Text("Fechar"),
-                              ),
-                            ],
-                          ); // Passa os valores do erro e descrição
-                        },
-                      );
-                    } else {
-                      ErrorDialog(
-                        erro: "Problema Update ",
-                        desc: "Algo deu errado, tente novamente",
-                      );
-                    }
+
+                    showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        title: const Text("Deseja Salvar?"),
+                        content: const Text(
+                            "Tem certeza de que deseja alterar os dados de sua conta? Essa ação não pode ser desfeita."),
+                        actions: <Widget>[
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: const Text("Cancelar"),
+                          ),
+                          TextButton(
+                            onPressed: () async {
+                              Navigator.of(context).pop();
+                              if (await updateProfile(user)) {
+                                showSuccessDialog(context, "Sucesso",
+                                    "Os seus dados foram atualizados");
+                              } else {
+                                showErrorDialog(context, "Problema ao salvar os dados",
+                          "Tente novamente");
+                              }
+                            },
+                            child: const Text("Salvar"),
+                          ),
+                        ],
+                      ),
+                    );
                   },
                   style: FilledButton.styleFrom(
                       backgroundColor: primaryColor,
@@ -268,17 +276,21 @@ class _UserProfileState extends State<UserProfile> {
                         actions: <Widget>[
                           TextButton(
                             onPressed: () {
-                              Navigator.of(context).pop(); // Fecha o diálogo
+                              Navigator.of(context).pop();
                             },
                             child: const Text("Cancelar"),
                           ),
                           TextButton(
                             onPressed: () async {
-                              Navigator.of(context).pop(); // Fecha o diálogo
+                              Navigator.of(context).pop();
                               if (await deleteAccount()) {
-                                Navigator.of(context).popUntil((route) => route.isFirst);
+                                showSuccessDialog(context, "Sucesso",
+                                    "Sua conta foi apagada");
+                                Navigator.of(context)
+                                    .popUntil((route) => route.isFirst);
                               } else {
-                                ErrorDialog(desc: "Tente novamente", erro: "Não foi possivel apagar a conta");
+                                showErrorDialog(context, "Erro ao apagar conta",
+                                    "Tente novamente mais tarde");
                               }
                             },
                             child: const Text("Excluir"),
