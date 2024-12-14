@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:projeto/Class/Event.dart';
+import 'package:projeto/Components/DateTextInputFormatter.dart';
 import 'package:projeto/Components/ErrorDialog.dart';
+import 'package:projeto/Components/SuccesDialog.dart';
 import 'package:projeto/Req/EventReq.dart';
 import 'package:projeto/assets/Colors.dart';
 
@@ -36,9 +39,7 @@ class _CreateEventState extends State<CreateEvent> {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
+                const SizedBox(height: 20),
                 const SizedBox(
                   width: 800,
                   child: Align(
@@ -81,7 +82,7 @@ class _CreateEventState extends State<CreateEvent> {
                       "Data",
                       style: TextStyle(
                         fontSize: 20,
-                        color: textColor,
+                        color: Colors.black, // Ajuste para a cor desejada
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -95,11 +96,16 @@ class _CreateEventState extends State<CreateEvent> {
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       filled: true,
-                      fillColor: secondaryColor,
+                      fillColor: secondaryColor, // Ajuste para a cor desejada
                     ),
                     style: const TextStyle(
-                      color: primaryColor,
+                      color: Colors.black, // Ajuste para a cor desejada
                     ),
+                    inputFormatters: [
+                      // Formatação personalizada para o campo de data
+                      FilteringTextInputFormatter.digitsOnly,
+                      DateTextInputFormatter(),
+                    ],
                   ),
                 ),
               ],
@@ -145,27 +151,13 @@ class _CreateEventState extends State<CreateEvent> {
                     Event event = Event(
                         title: _nameController.text,
                         description: _descController.text,
-                        date: '2024-12-13T17:46:04Z');
+                        date: _dataController.text);
                     if (await insertEvent(event)) {
-                      showDialog(
-                        context: context,
-                        builder: (builder) => Column(
-                          children: [
-                            const Text("Criado com sucesso"),
-                            TextButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              child: const Text("Ok"),
-                            ),
-                          ],
-                        ),
-                      );
+                      showSuccessDialog(context, "Criado com sucesso",
+                          "Seu evento parecerá para as outras pessoas");
                     } else {
-                      ErrorDialog(
-                        erro: "Erro ao criar evento",
-                        desc: "Tente novamente",
-                      );
+                      showErrorDialog(context, "Erro ao criar evento",
+                          "Tente novamente mais tarde");
                     }
                   },
                   style: FilledButton.styleFrom(
@@ -185,34 +177,10 @@ class _CreateEventState extends State<CreateEvent> {
                 ),
                 const SizedBox(width: 20),
                 FilledButton(
-                  onPressed: () async{
-                    Event event = Event(
-                        id: 'e019eaea-73b9-4a6c-be53-4da23c9ddc87',
-                        title: _nameController.text,
-                        description: _descController.text,
-                        date: '2024-12-13T17:46:04Z');
-                    if(await updateEvent(event)){
-                       showDialog(
-                        context: context,
-                        builder: (builder) => Column(
-                          children: [
-                            const Text("update com sucesso"),
-                            TextButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              child: const Text("Ok"),
-                            ),
-                          ],
-                        ),
-                      );
-                    } else {
-                      ErrorDialog(
-                        erro: "Erro ao update evento",
-                        desc: "Tente novamente",
-                      );
-                    }
-                    
+                  onPressed: () async {
+                    _nameController.clear();
+                    _dataController.clear();
+                    _descController.clear();
                   },
                   style: FilledButton.styleFrom(
                       backgroundColor: accentColor,

@@ -5,7 +5,7 @@ import 'package:projeto/Pages/Calendar.dart';
 import 'package:projeto/Pages/Enterprise/HomeEnterprise.dart';
 import 'package:projeto/Pages/Student/Home.dart';
 import 'package:projeto/Pages/Teacher/HomeTeacher.dart';
-import 'package:projeto/Pages/Teacher/YourEvents.dart';
+import 'package:projeto/Pages/YourEvents.dart';
 import 'package:projeto/assets/Colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Pages/User.dart';
@@ -58,8 +58,8 @@ class _AplicationState extends State<Aplication> {
           else const SizedBox.shrink(), // Caso nenhum tipo seja encontrado, não exibe nada
           const UserProfile(),
           if (type == 'P' || type == 'A') const Calendar() else const SizedBox.shrink(),
-          if (type == 'P' || type == 'A') const CreateEvent() else const SizedBox.shrink(),
-          if (type == 'A') const YourEvents() else const SizedBox.shrink(),
+          if (type == 'P' || type == 'E') const CreateEvent() else const SizedBox.shrink(),
+          if (type == 'P' || type == 'E') const YourEvents() else const SizedBox.shrink(),
         ],
       ),
       bottomNavigationBar: NavBottomBarIndice(

@@ -65,7 +65,7 @@ class _NavBottomBarIndiceState extends State<NavBottomBarIndice> {
                     ),
                   ),
                 ),
-              if (widget.value == "P")
+              if (widget.value == "P" || widget.value == "E")
                 GestureDetector(
                   onTap: () {
                     widget.onTabSelected(

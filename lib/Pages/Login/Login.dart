@@ -119,7 +119,6 @@ class _LoginState extends State<Login> {
                         '/home',
                       );
                     } else {
-                      print("Deu pau");
                       showErrorDialog(context, "Erro no Login", "Senha ou email estão errados");
                     }
                   },

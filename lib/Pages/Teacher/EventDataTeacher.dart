@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:projeto/Class/Event.dart';
+import 'package:projeto/Components/ErrorDialog.dart';
+import 'package:projeto/Components/SuccesDialog.dart';
+import 'package:projeto/Req/EventReq.dart';
 import 'package:projeto/assets/Colors.dart';
 
 class EventDataTeacher extends StatefulWidget {
@@ -9,6 +13,39 @@ class EventDataTeacher extends StatefulWidget {
 }
 
 class _EventDataTeacherState extends State<EventDataTeacher> {
+  Event? _event;
+  String? eventId;
+
+  @override
+  void initState() {
+    super.initState();
+    // Recupera o ID do evento ao inicializar
+    Future.microtask(() {
+      final Map<String, dynamic>? args =
+          ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+      setState(() {
+        eventId = args?['id'];
+      });
+      if (eventId != null) {
+        _loadEvent(eventId!);
+      } else {
+        showErrorDialog(context, "Erro", "ID do evento não encontrado.");
+      }
+    });
+  }
+
+  Future<void> _loadEvent(String id) async {
+    Event? event = await getEvent(id);
+    if (event != null) {
+      setState(() {
+        _event = event;
+      });
+    } else {
+      showErrorDialog(
+          context, "Erro ao carregar evento", "Tente novamente mais tarde.");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,44 +71,43 @@ class _EventDataTeacherState extends State<EventDataTeacher> {
                     ),
                   )),
               const SizedBox(height: 40),
-              const SizedBox(
+              SizedBox(
                 width: 800,
                 child: ListTile(
-                  title: Text(
+                  title: const Text(
                     'Nome do Evento',
                     style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  subtitle: Text('Lorem Impsum is simply'),
+                  subtitle: Text(_event!.title),
                 ),
               ),
-              const SizedBox(
+              SizedBox(
                 width: 800,
                 child: ListTile(
-                  title: Text(
+                  title: const Text(
                     'Data do Evento',
                     style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  subtitle: Text('00/00/0000'),
+                  subtitle: Text(_event!.date),
                 ),
               ),
-              const SizedBox(
+              SizedBox(
                 width: 800,
                 child: ListTile(
-                  title: Text(
+                  title: const Text(
                     'Descrição',
                     style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  subtitle: Text(
-                      'Lorem Impsum is simply Lorem Impsum is simply  Lorem Impsum is simply v Lorem Impsum is simplyLorem Impsum is simplyLorem Impsum is simplyLorem Impsum is simplyLorem Impsum is simplyLorem Impsum is simply '),
+                  subtitle: Text(_event!.description),
                 ),
               ),
               const SizedBox(height: 40),
@@ -81,125 +117,66 @@ class _EventDataTeacherState extends State<EventDataTeacher> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     FilledButton(
-                      onPressed: () {
-                        showDialog(
-                          context: context,
-                          builder: (context) => AlertDialog(
-                            title: const Text("Deseja mesmo recusar?"),
-                            content: Row(
-                              children: [
-                                FilledButton(
-                                  onPressed: () {},
-                                  style: FilledButton.styleFrom(
-                                      backgroundColor: accentColor,
-                                      minimumSize: const Size(150, 60),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(8),
-                                      )),
-                                  child: const Text(
-                                    "Sim",
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      color: secondaryColor,
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(width: 20),
-                                FilledButton(
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  style: FilledButton.styleFrom(
-                                      backgroundColor: accentColor,
-                                      minimumSize: const Size(150, 60),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(8),
-                                      )),
-                                  child: const Text(
-                                    "Não",
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      color: secondaryColor,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
+                      onPressed: () async {
+                        if (await deleteEvent(eventId!)) {
+                          showSuccessDialog(context, "Sucesso em Apagar",
+                              "Os outros usários não verão mais este evento");
+                        } else {
+                          showErrorDialog(context, "Erro em apagar",
+                              "Algo deu errado, tente novamente");
+                        }
                       },
                       style: FilledButton.styleFrom(
-                          backgroundColor: accentColor,
+                          backgroundColor: primaryColor,
                           minimumSize: const Size(100, 60),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8),
                           )),
                       child: const Text(
-                        "Recusar",
+                        "Deletar",
                         style: TextStyle(
                           fontSize: 20,
-                          color: textColor,
+                          color: secondaryColor,
                         ),
                       ),
                     ),
                     const SizedBox(width: 10),
                     FilledButton(
-                      onPressed: () {
-                        showDialog(
-                          context: context,
-                          builder: (context) => AlertDialog(
-                            title: const Text("Deseja mesmo aceitar?"),
-                            content: Row(
-                              children: [
-                                FilledButton(
-                                  onPressed: () {},
-                                  style: FilledButton.styleFrom(
-                                      backgroundColor: accentColor,
-                                      minimumSize: const Size(150, 60),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(8),
-                                      )),
-                                  child: const Text(
-                                    "Sim",
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      color: secondaryColor,
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(width: 20),
-                                FilledButton(
+                      onPressed: () async {
+                        if (await subscribeEvent(eventId!)) {
+                          showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              title: const Text("Sucesso"),
+                              content: const Text(
+                                  "Você está participando do evento."),
+                              actions: [
+                                TextButton(
                                   onPressed: () {
-                                    Navigator.of(context).pop();
+                                    Navigator.pop(context);
                                   },
-                                  style: FilledButton.styleFrom(
-                                      backgroundColor: accentColor,
-                                      minimumSize: const Size(150, 60),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(8),
-                                      )),
-                                  child: const Text(
-                                    "Não",
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      color: secondaryColor,
-                                    ),
-                                  ),
+                                  child: const Text("Ok"),
                                 ),
                               ],
                             ),
-                          ),
-                        );
+                          );
+                        } else {
+                          showErrorDialog(
+                            context,
+                            "Erro ao participar do evento",
+                            "Algo de errado aconteceu, por favor tente novamente.",
+                          );
+                        }
                       },
                       style: FilledButton.styleFrom(
-                        backgroundColor: primaryColor,
+                        backgroundColor: accentColor,
                         minimumSize: const Size(100, 60),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
                       ),
                       child: const Text(
-                        "Aceitar",
+                        "Participar",
                         style: TextStyle(
                           fontSize: 20,
                           color: textColor,
