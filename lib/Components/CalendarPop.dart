@@ -19,7 +19,7 @@ class CalendarPopState extends State<CalendarPop> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        EventCard(goTo: widget.goTo, past: widget.past),
+        // EventCard(goTo: widget.goTo, past: widget.past),
         Transform.translate(
           offset: const Offset(400, -15),
           child: GestureDetector(

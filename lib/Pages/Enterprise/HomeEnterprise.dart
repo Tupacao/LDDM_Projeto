@@ -57,11 +57,12 @@ class _HomeEnterpriseState extends State<HomeEnterprise> {
                 itemCount: 10,
                 itemBuilder: (context, index) {
                   return const Padding(
-                      padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                      child: EventCard(
-                        goTo: "/event_data/:enterprise",
-                        past: false,
-                      ));
+                    padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                    // child: EventCard(
+                    //   goTo: "/event_data/:enterprise",
+                    //   past: false,
+                    // ),
+                  );
                 },
               ),
             ),
@@ -73,10 +74,10 @@ class _HomeEnterpriseState extends State<HomeEnterprise> {
                 itemBuilder: (context, index) {
                   return const Padding(
                     padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                    child: EventCard(
-                      goTo: '/event_data/:data',
-                      past: true,
-                    ),
+                    // child: EventCard(
+                    //   goTo: '/event_data/:data',
+                    //   past: true,
+                    // ),
                   );
                 },
               ),

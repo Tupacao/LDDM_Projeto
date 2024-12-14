@@ -38,7 +38,7 @@ Future<bool> insertEvent(Event event) async {
 }
 
 // Buscar um evento específico
-Future<Map<String, dynamic>?> getEvent(String eventId) async {
+Future<Event?> getEvent(String eventId) async {
   try {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString('token');
@@ -55,7 +55,12 @@ Future<Map<String, dynamic>?> getEvent(String eventId) async {
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
         print("Evento: $data");
-        return data;
+        return Event(
+            title: data['title'],
+            description: data['description'],
+            date: data['eventDate'],
+            id: data['id'],
+          );
       } else {
         print("Erro ao buscar evento: ${response.body}");
       }
@@ -69,7 +74,7 @@ Future<Map<String, dynamic>?> getEvent(String eventId) async {
 }
 
 // Buscar todos os eventos
-Future<List<dynamic>?> getEvents(int page) async {
+Future<List<Event>?> getEvents(int page) async {
   try {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString('token');
@@ -84,9 +89,15 @@ Future<List<dynamic>?> getEvents(int page) async {
       );
 
       if (response.statusCode == 200) {
-        final data = jsonDecode(response.body);
-        print("Eventos: $data");
-        return data;
+        final List<dynamic> data = jsonDecode(response.body);
+        return data.map((json) {
+          return Event(
+            title: json['title'],
+            description: json['description'],
+            date: json['eventDate'],
+            id: json['id'],
+          );
+        }).toList();
       } else {
         print("Erro ao buscar eventos: ${response.body}");
       }
@@ -96,6 +107,7 @@ Future<List<dynamic>?> getEvents(int page) async {
   }
   return null;
 }
+
 
 // Atualizar um evento
 Future<bool> updateEvent(Event event) async {
@@ -214,7 +226,7 @@ Future<bool> unsubscribeEvent(String eventId) async {
 }
 
 // Buscar eventos do usuário
-Future<List<dynamic>?> getUserEvents() async {
+Future<List<Event>?> getUserEvents() async {
   try {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString('token');
@@ -226,11 +238,26 @@ Future<List<dynamic>?> getUserEvents() async {
       );
 
       if (response.statusCode == 200) {
-        final data = jsonDecode(response.body);
-        print("Eventos do usuário: $data");
-        return data;
+        final Map<String, dynamic> data = jsonDecode(response.body); // Esperamos um mapa JSON
+
+        // Verifique se a chave 'userEvents' existe e é uma lista
+        if (data.containsKey('userEvents') && data['userEvents'] is List) {
+          final List<dynamic> eventsList = data['userEvents'];
+
+          // Mapeie a lista para objetos 'Event'
+          return eventsList.map((json) {
+            return Event(
+              title: json['title'],
+              description: json['description'],
+              date: json['eventDate'],
+              id: json['id'],
+            );
+          }).toList();
+        } else {
+          print("Formato de dados inesperado: a chave 'userEvents' não foi encontrada ou não é uma lista.");
+        }
       } else {
-        print("Erro ao buscar eventos do usuário: ${response.body}");
+        print("Erro ao buscar eventos: ${response.body}");
       }
     } else {
       print("Token não encontrado!");

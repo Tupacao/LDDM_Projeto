@@ -140,8 +140,8 @@ class _HomeTeacherState extends State<HomeTeacher> {
                 itemBuilder: (context, index) {
                   return const Padding(
                     padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
-                    child:
-                        EventCard(goTo: '/event_data/:enterprise', past: false),
+                    // child:
+                    //     EventCard(goTo: '/event_data/:enterprise', past: false),
                   );
                 },
               ),
@@ -154,7 +154,7 @@ class _HomeTeacherState extends State<HomeTeacher> {
                 itemBuilder: (context, index) {
                   return const Padding(
                     padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
-                    child: EventCard(goTo: '/event_data/:teacher', past: true),
+                    // child: EventCard(goTo: '/event_data/:teacher', past: true),
                   );
                 },
               ),

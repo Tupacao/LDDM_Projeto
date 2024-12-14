@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:projeto/Components/ErrorDialog.dart';
 import 'package:projeto/Req/EventReq.dart';
 import 'package:projeto/assets/Colors.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class NavBottomBarIndice extends StatefulWidget {
   final Function(int) onTabSelected; // Adiciona o callback para mudar o índice
@@ -118,10 +120,7 @@ class _NavBottomBarIndiceState extends State<NavBottomBarIndice> {
                 ),
                 GestureDetector(
                   onTap: () async{
-                    if(await getUserEvents() != null){
-                      print("deu certo");
-                    }
-                    widget.onTabSelected(0); // indice da home
+                    widget.onTabSelected(0);
                   },
                   child: Container(
                     width: 60,
