@@ -114,6 +114,9 @@ class _LoginState extends State<Login> {
                         password: _passwordController.text);
 
                     if (await loginUser(user)) {
+                      _passwordController.clear();
+                      _emailController.clear();
+                      
                       Navigator.pushNamed(
                         context,
                         '/home',

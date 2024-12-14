@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projeto/Class/Event.dart';
 import 'package:projeto/Components/ErrorDialog.dart';
+import 'package:projeto/Components/Functoions.dart';
 import 'package:projeto/Components/SuccesDialog.dart';
 import 'package:projeto/Req/EventReq.dart';
 import 'package:projeto/assets/Colors.dart';
@@ -81,7 +82,7 @@ class _EventDataTeacherState extends State<EventDataTeacher> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  subtitle: Text(_event!.title),
+                  subtitle: Text(convertToDateFormat(_event!.title)),
                 ),
               ),
               SizedBox(

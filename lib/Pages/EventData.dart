@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projeto/Class/Event.dart';
 import 'package:projeto/Components/ErrorDialog.dart';
+import 'package:projeto/Components/Functoions.dart';
 import 'package:projeto/Req/EventReq.dart';
 import 'package:projeto/assets/Colors.dart';
 
@@ -103,7 +104,7 @@ class _EventDataState extends State<EventData> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      subtitle: Text(_event!.date),
+                      subtitle: Text(convertToDateFormat(_event!.date)),
                     ),
                   ),
                   const SizedBox(height: 40),

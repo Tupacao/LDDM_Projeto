@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:projeto/Class/Event.dart';
 import 'package:projeto/Components/DateTextInputFormatter.dart';
 import 'package:projeto/Components/ErrorDialog.dart';
+import 'package:projeto/Components/Functoions.dart';
 import 'package:projeto/Components/SuccesDialog.dart';
 import 'package:projeto/Req/EventReq.dart';
 import 'package:projeto/assets/Colors.dart';
@@ -114,7 +115,7 @@ class _EventDataEnterpriseState extends State<EventDataEnterprise> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  subtitle: Text(_event?.date ?? "Carregando..."),
+                  subtitle: Text(convertToDateFormat(_event!.date) ?? "Carregando..."),
                 ),
                 const SizedBox(height: 20),
                 SizedBox(

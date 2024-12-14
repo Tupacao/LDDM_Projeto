@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto/Components/Functoions.dart';
 import 'package:projeto/assets/Colors.dart';
 
 class EventCard extends StatelessWidget {
@@ -19,6 +20,7 @@ class EventCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(
@@ -50,7 +52,7 @@ class EventCard extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    date,
+                    convertToDateFormat(date),
                     style: TextStyle(
                       fontSize: 17,
                       color: past ? Colors.red : Colors.black,
