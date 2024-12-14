@@ -119,7 +119,8 @@ class _LoginState extends State<Login> {
                         '/home',
                       );
                     } else {
-                      ErrorDialog(erro: "Erro de Login", desc: "Seu email ou senha estão errados, por favor tente novamente");
+                      print("Deu pau");
+                      showErrorDialog(context, "Erro no Login", "Senha ou email estão errados");
                     }
                   },
                   style: FilledButton.styleFrom(

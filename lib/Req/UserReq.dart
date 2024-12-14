@@ -11,7 +11,7 @@ Future<bool> loginUser(User user) async {
     final response = await http.post(
       Uri.parse('$apiUrl/login'),
       headers: {
-        'Content-Type': 'application/json', // Especifica que o corpo é JSON
+        'Content-Type': 'application/json',
       },
       body: jsonEncode({
         'email': user.email,
@@ -148,7 +148,7 @@ Future<bool> insertUser(User user) async {
       }),
     );
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 201) {
       print("Inserção bem-sucedida!");
       return true; // Retorna true em caso de sucesso
     } else {

@@ -10,12 +10,12 @@ class ErrorDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(erro), // Usando o título dinamicamente
-      content: Text(desc), // Usando a descrição dinamicamente
+      title: Text(erro),
+      content: Text(desc),
       actions: <Widget>[
         TextButton(
           onPressed: () {
-            Navigator.of(context).pop(); // Fecha o diálogo
+            Navigator.of(context).pop();
           },
           child: const Text("Fechar"),
         ),
@@ -29,7 +29,7 @@ void showErrorDialog(BuildContext context, String erro, String desc) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
-      return ErrorDialog(erro: erro, desc: desc); // Passa os valores do erro e descrição
+      return ErrorDialog(erro: erro, desc: desc);
     },
   );
 }

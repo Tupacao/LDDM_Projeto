@@ -167,7 +167,7 @@ class _RegisterState extends State<Register> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 20),
                   FilledButton(
                     onPressed: () async {
                       User user = User(
@@ -178,9 +178,10 @@ class _RegisterState extends State<Register> {
                           password: _passwordController.text);
 
                       if (await insertUser(user)) {
-                        Navigator.pushNamed(context, '/home');
+                        Navigator.pop(context);
                       } else {
-                        ErrorDialog(erro: "Erro ao registrar", desc: "Algo de errado aconteceu, por favor tente novamente");
+                        showErrorDialog(context, "Erro ao registrar",
+                            "Algo de errado aconteceu, por favor tente novamente");
                       }
                     },
                     style: FilledButton.styleFrom(
