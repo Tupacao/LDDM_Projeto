@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projeto/Components/ErrorDialog.dart';
-import 'package:projeto/Req/EventReq.dart';
 import 'package:projeto/assets/Colors.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class NavBottomBarIndice extends StatefulWidget {
   final Function(int) onTabSelected; // Adiciona o callback para mudar o índice

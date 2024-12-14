@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:projeto/Components/EventCard.dart';
 import 'package:projeto/assets/Colors.dart';
 
 class CalendarPop extends StatefulWidget {
