@@ -61,7 +61,8 @@ class _EventDataEnterpriseState extends State<EventDataEnterprise> {
       appBar: AppBar(
         backgroundColor: secondaryColor,
       ),
-      body: SingleChildScrollView( // Adicionando rolagem
+      body: SingleChildScrollView(
+        // Adicionando rolagem
         child: Center(
           child: SizedBox(
             width: 800,
@@ -175,7 +176,7 @@ class _EventDataEnterpriseState extends State<EventDataEnterprise> {
                             title: _nameController.text,
                             description: _descController.text,
                             date: _dataController.text,
-                            id: _event!.id,
+                            id: eventId,
                           );
                           if (await updateEvent(aux)) {
                             showSuccessDialog(
@@ -184,7 +185,9 @@ class _EventDataEnterpriseState extends State<EventDataEnterprise> {
                               "As alterações serão aplicadas em instantes",
                             );
                           } else {
-                            showErrorDialog(context, "Erro ao salvar informações",
+                            showErrorDialog(
+                                context,
+                                "Erro ao salvar informações",
                                 "Tente novamente");
                           }
                         },
@@ -204,72 +207,14 @@ class _EventDataEnterpriseState extends State<EventDataEnterprise> {
                       ),
                       const SizedBox(width: 20),
                       FilledButton(
-                        onPressed: () {
-                          showDialog(
-                            context: context,
-                            builder: (context) => AlertDialog(
-                              title: const Text("Deseja mesmo apagar?"),
-                              content: Row(
-                                children: [
-                                  FilledButton(
-                                    onPressed: () async {
-                                      if (await deleteEvent(_event!.id)) {
-                                        showDialog(
-                                          context: context,
-                                          builder: (builder) => Column(
-                                            children: [
-                                              const Text("Criado com sucesso"),
-                                              TextButton(
-                                                onPressed: () {
-                                                  Navigator.pop(context);
-                                                },
-                                                child: const Text("Ok"),
-                                              ),
-                                            ],
-                                          ),
-                                        );
-                                      } else {
-                                        showErrorDialog(context, "Erro deletar",
-                                            "Tente novamente mais tarde");
-                                      }
-                                    },
-                                    style: FilledButton.styleFrom(
-                                        backgroundColor: accentColor,
-                                        minimumSize: const Size(150, 60),
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(8),
-                                        )),
-                                    child: const Text(
-                                      "Sim",
-                                      style: TextStyle(
-                                        fontSize: 20,
-                                        color: secondaryColor,
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(width: 20),
-                                  FilledButton(
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                    style: FilledButton.styleFrom(
-                                        backgroundColor: accentColor,
-                                        minimumSize: const Size(150, 60),
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(8),
-                                        )),
-                                    child: const Text(
-                                      "Não",
-                                      style: TextStyle(
-                                        fontSize: 20,
-                                        color: secondaryColor,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
+                        onPressed: () async {
+                          if (await deleteEvent(_event!.id)) {
+                            showSuccessDialog(context, "Apagado com sucesso",
+                                "seu evento foi apagado, em instantes ele sumirá para os demais usuários");
+                          } else {
+                            showErrorDialog(context, "Erro deletar",
+                                "Tente novamente mais tarde");
+                          }
                         },
                         style: FilledButton.styleFrom(
                             backgroundColor: accentColor,
